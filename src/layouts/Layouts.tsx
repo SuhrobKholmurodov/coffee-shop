@@ -1,30 +1,33 @@
-import { Link, Outlet } from 'react-router-dom'
+import { Outlet, NavLink } from 'react-router-dom'
+import logoMain from '../assets/img/logoMain.png'
 
 const Layouts = () => {
   return (
     <div>
-      <header className='flex items-center justify-between p-4 bg-gray-800 text-white'>
+      <header className='flex items-center justify-between py-4 px-[3%] shadow-md text-gray-800'>
+        <img className='w-[90px] object-cover h-[50px]' src={logoMain} alt='' />
         <nav>
-          <ul className='flex space-x-4'>
+          <ul className='flex space-x-[100px]'>
             <li>
-              <Link to='/' className='hover:text-gray-400'>
+              <NavLink to='/' className='hover:text-gray-400'>
                 Главная
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to='/contacts' className='hover:text-gray-400'>
+              <NavLink to='/contacts' className='hover:text-gray-400'>
                 Контакты
-              </Link>
+              </NavLink>
             </li>
             <li>
-              <Link to='/about' className='hover:text-gray-400'>
+              <NavLink to='/about' className='hover:text-gray-400'>
                 О нас
-              </Link>
+              </NavLink>
             </li>
           </ul>
         </nav>
+        <button>hello</button>
       </header>
-      <main>
+      <main className='px-[3%] pt-[20px]'>
         <Outlet />
       </main>
     </div>
