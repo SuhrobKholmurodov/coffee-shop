@@ -1,38 +1,15 @@
-import { Outlet, NavLink } from 'react-router-dom'
-import { ShoppingCart } from 'lucide-react'
-import logoMain from '../assets/icons/logoMain.svg'
+import { Outlet } from 'react-router-dom'
+import Header from '../components/Header'
+import { Footer } from '../components'
 
 const Layouts = () => {
   return (
-    <div>
-      <header className='flex items-center justify-between py-4 px-[3%] shadow-md text-gray-800'>
-        <img className='w-[90px] object-cover h-[50px]' src={logoMain} alt='' />
-        <nav>
-          <ul className='flex space-x-[100px]'>
-            <li>
-              <NavLink to='/' className='hover:text-[#665F55]'>
-                Главная
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/contacts' className='hover:text-[#665F55]'>
-                Контакты
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to='/about' className='hover:text-[#665F55]'>
-                О нас
-              </NavLink>
-            </li>
-          </ul>
-        </nav>
-        <div>
-          <ShoppingCart />
-        </div>
-      </header>
-      <main className='px-[3%] pt-[20px]'>
+    <div className='flex flex-col min-h-screen'>
+      <Header />
+      <main className='px-[3%] pt-[20px] flex-grow'>
         <Outlet />
       </main>
+      <Footer />
     </div>
   )
 }
