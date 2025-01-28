@@ -1,5 +1,6 @@
 import { Outlet, NavLink } from 'react-router-dom'
-import logoMain from '../assets/img/logoMain.png'
+import { ShoppingCart } from 'lucide-react'
+import logoMain from '../assets/icons/logoMain.svg'
 
 const Layouts = () => {
   return (
@@ -9,23 +10,25 @@ const Layouts = () => {
         <nav>
           <ul className='flex space-x-[100px]'>
             <li>
-              <NavLink to='/' className='hover:text-gray-400'>
+              <NavLink to='/' className='hover:text-[#665F55]'>
                 Главная
               </NavLink>
             </li>
             <li>
-              <NavLink to='/contacts' className='hover:text-gray-400'>
+              <NavLink to='/contacts' className='hover:text-[#665F55]'>
                 Контакты
               </NavLink>
             </li>
             <li>
-              <NavLink to='/about' className='hover:text-gray-400'>
+              <NavLink to='/about' className='hover:text-[#665F55]'>
                 О нас
               </NavLink>
             </li>
           </ul>
         </nav>
-        <button>hello</button>
+        <div>
+          <ShoppingCart />
+        </div>
       </header>
       <main className='px-[3%] pt-[20px]'>
         <Outlet />

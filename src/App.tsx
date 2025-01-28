@@ -1,10 +1,7 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './App.css'
-import Contacts from './pages/Contacts'
-import Home from './pages/Home'
-import About from './pages/About'
 import Layouts from './layouts/Layouts'
-import NotFound from './pages/NotFound'
+import { About, Cart, Contacts, Home, NotFound } from './pages'
 
 const App = () => {
   const router = createBrowserRouter([
@@ -23,6 +20,10 @@ const App = () => {
         {
           path: '/about',
           element: <About />
+        },
+        {
+          path: '/cart',
+          element: <Cart />
         }
       ]
     },
