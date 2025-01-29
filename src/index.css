@@ -11,9 +11,9 @@ body {
     background-color: #E1D4C9;
 }
 
-button:focus,
-button:focus-visible,
-button:active {
+body:focus,
+body:focus-visible,
+body:active {
   outline: none;
   box-shadow: none;
   -webkit-tap-highlight-color: transparent;

@@ -29,7 +29,7 @@ export const Home = () => {
           </span>
         </p>
       </div>
-      <div className='flex space-x-4 items-center justify-center mb-4'>
+      <div className='flex items-center justify-center gap-5 sm:justify-between mb-4'>
         {categories.map((el, index) => (
           <div
             key={el.name}

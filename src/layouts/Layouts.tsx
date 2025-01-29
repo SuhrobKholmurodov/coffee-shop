@@ -6,7 +6,7 @@ const Layouts = () => {
   return (
     <div className='flex flex-col min-h-screen'>
       <Header />
-      <main className='px-[3%] sm:pt-[30%] pt-[7%] pb-[3%] flex-grow'>
+      <main className='px-[3%] sm:pt-[25%] pt-[7%] pb-[3%] flex-grow'>
         <Outlet />
       </main>
       <Footer />

@@ -4,7 +4,7 @@ import logoMain from '../assets/icons/logoMain.svg'
 
 const Header = () => {
   return (
-    <header className='flex fixed top-0 left-0 right-0 bg-[#E1D4C9] items-center justify-between py-2 px-[3%] shadow-md text-gray-800'>
+    <header className='flex fixed top-0 left-0 right-0 bg-[#E1D4C9] items-center justify-between py-1 px-[3%] shadow-md text-gray-800'>
       <Link to={'/'}>
         <img className='w-[90px] object-cover h-[50px]' src={logoMain} alt='' />
       </Link>
@@ -31,7 +31,7 @@ const Header = () => {
         <input
           type='text'
           placeholder='search'
-          className='px-3 py-2 border border-grayrrer-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#665F55]'
+          className='px-3 py-2 sm:hidden border border-grayrrer-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#665F55]'
         />
       </div>
       <div>

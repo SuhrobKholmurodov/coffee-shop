@@ -101,9 +101,8 @@ export const ProductDialog = ({
             ))}
           </div>
         </div>
-
-        <button className='mt-6 w-full bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 hover:scale-105 hover:shadow-lg transition-transform duration-300'>
-          Добавить в корзину
+        <button className='mt-6 w-full bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'>
+          Add to cart
         </button>
       </div>
     </div>

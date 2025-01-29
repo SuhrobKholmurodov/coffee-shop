@@ -23,8 +23,8 @@ export const ProductList = () => {
 
   if (status === 'loading') {
     return (
-      <div className='grid grid-cols-4 sm:grid-cols-1 gap-6'>
-        {[...new Array(8)].map((_, index) => (
+      <div className='grid grid-cols-4 sm:grid-cols-1 gap-6 sm:gap-[10px]'>
+        {[...new Array(4)].map((_, index) => (
           <Skeleton key={index} />
         ))}
       </div>
@@ -38,15 +38,15 @@ export const ProductList = () => {
   }
 
   return (
-    <div className='grid grid-cols-4 sm:grid-cols-1 gap-6'>
+    <div className='grid grid-cols-4 sm:grid-cols-2 gap-6'>
       {items.map(el => (
         <div
           key={el.id}
-          className='border border-secondareBgColor p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-[420px]'
+          className='border border-secondareBgColor p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 sm:h-auto flex flex-col h-[420px]'
         >
           <div className='flex justify-center mb-3'>
             <img
-              className='h-[160px] w-[160px] object-cover'
+              className='h-[160px] sm:h-[100px] sm:w-[100px] w-[160px] object-cover'
               src={el.imageUrl}
               alt={el.name}
             />
@@ -55,13 +55,16 @@ export const ProductList = () => {
             {el.name}
           </h2>
           <p className='text-gray-600 dark:text-gray-400 text-sm flex-grow overflow-hidden text-ellipsis'>
-            {el.description}
+            {el.description.split(' ').slice(0, 10).join(' ')}
+            {el.description.split(' ').length > 10 && (
+              <span className='text-blue-500 cursor-pointer'>...more</span>
+            )}
           </p>
           <p className='font-bold text-gray-800 dark:text-white text-lg mt-2'>
             ${el.price}
           </p>
           <button
-            className='mt-auto flex items-center justify-center bg-secondareBgColor text-mainBgColor py-2 rounded-full hover:bg-opacity-90 hover:scale-105 hover:shadow-lg transition-transform duration-300'
+            className='mt-auto flex items-center justify-center bg-secondareBgColor text-mainBgColor py-2 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
             onClick={() => {
               setactiveFirst(0)
               setactiveSecond(0)
