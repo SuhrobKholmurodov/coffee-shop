@@ -1,9 +1,13 @@
 import { Link } from 'react-router-dom'
 import { AlertTriangle, Home } from 'lucide-react'
+import { Helmet } from 'react-helmet'
 
 export const NotFound = () => {
   return (
     <div className='flex flex-col px-[5%] items-center justify-center h-screen text-center'>
+      <Helmet>
+        <title>404 Not Found</title>
+      </Helmet>
       <AlertTriangle className='w-[80px] h-[80px] text-[#B0907A] animate-bounce' />
       <h1 className='text-[50px] text-secondareBgColor sm:text-[35px] font-semibold mt-4'>
         Page Not Found

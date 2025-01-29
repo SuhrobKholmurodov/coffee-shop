@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 import { selectFilter } from '../redux/filter/selectors'
 import { setCategoryId } from '../redux/filter/slice'
 import { useEffect } from 'react'
+import { Helmet } from 'react-helmet'
 
 export const Home = () => {
   const dispatch = useDispatch()
@@ -30,6 +31,9 @@ export const Home = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>Home</title>
+      </Helmet>
       <div>
         <p
           style={{ lineHeight: '125%' }}

@@ -1,8 +1,13 @@
 import { Coffee, Smile, MapPin } from 'lucide-react'
+import { Helmet } from 'react-helmet'
+
 
 export const About = () => {
   return (
     <div className='bg-secondareBgColor py-[3%] px-[6%] rounded-2xl w-full flex flex-col items-center text-mainBgColor'>
+       <Helmet>
+        <title>About</title>
+      </Helmet>
       <h1 className='text-[50px] sm:text-[35px] font-semibold mb-6 flex items-center gap-3'>
         <Coffee className='w-[40px] h-[40px] text-[#B0907A]' /> About Us
       </h1>

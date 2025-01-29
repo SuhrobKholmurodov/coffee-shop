@@ -13,6 +13,7 @@ import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import AccordionDetails from '@mui/material/AccordionDetails'
+import { Helmet } from 'react-helmet'
 
 const categoryNames = ['coffees', 'teas', 'desserts']
 
@@ -44,6 +45,10 @@ export const ProductDetails = () => {
     setProduct(foundProduct || null)
   }, [items, id, category, status])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   if (status === 'loading' || !items.length) {
     return <div className='text-center'>Загрузка...</div>
   }
@@ -54,6 +59,9 @@ export const ProductDetails = () => {
 
   return (
     <div>
+      <Helmet>
+        <title>{product.name}</title>
+      </Helmet>
       <div role='presentation'>
         <Breadcrumbs aria-label='breadcrumb'>
           <NavLink to={'/'}>
@@ -102,7 +110,10 @@ export const ProductDetails = () => {
               <AccordionDetails>
                 <div className='mt-[-15px]'>
                   {product.reviews.map((review, index) => (
-                    <div key={index} className='grid border-t grid-cols-2 border-b py-4'>
+                    <div
+                      key={index}
+                      className='grid border-t grid-cols-2 border-b py-4'
+                    >
                       <div className='flex items-start sm:items-center'>
                         <img
                           src={review.profilePhoto}
