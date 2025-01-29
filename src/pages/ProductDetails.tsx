@@ -89,7 +89,7 @@ export const ProductDetails = () => {
       <div className='w-full sm:w-auto rounded-lg shadow-lg'>
         {product.reviews && product.reviews.length > 0 ? (
           <div>
-            <Accordion>
+            <Accordion defaultExpanded>
               <AccordionSummary
                 expandIcon={<ExpandMoreIcon />}
                 aria-controls='panel1-content'
