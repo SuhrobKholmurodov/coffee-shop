@@ -4,7 +4,7 @@ import logoMain from '../assets/icons/logoMain.svg'
 
 const Header = () => {
   return (
-    <header className='flex fixed top-0 left-0 right-0 bg-[#E1D4C9] items-center justify-between py-4 px-[3%] shadow-md text-gray-800'>
+    <header className='flex fixed top-0 left-0 right-0 bg-[#E1D4C9] items-center justify-between py-2 px-[3%] shadow-md text-gray-800'>
       <Link to={'/'}>
         <img className='w-[90px] object-cover h-[50px]' src={logoMain} alt='' />
       </Link>

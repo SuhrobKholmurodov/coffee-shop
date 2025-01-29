@@ -1,10 +1,13 @@
 export type Products = {
   id: number
   name: string
-  category: number
-  price: number
   description: string
+  price: number
   imageUrl: string
+  options: {
+    first: string[]
+    second: string[]
+  }
 }
 
 export enum Status {

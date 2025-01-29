@@ -6,37 +6,38 @@ interface Product {
   description: string
   price: number
   imageUrl: string
+  options: {
+    first: string[]
+    second: string[]
+  }
 }
 
 interface ProductDialogProps {
   product: Product | null
-  activeMilk: number
-  activeSugar: number
-  onChangeMilk: (index: number) => void
-  onChangeSugar: (index: number) => void
+  activeFirst: number
+  activeSecond: number
+  onChangeFirst: (index: number) => void
+  onChangeSecond: (index: number) => void
   onClose: () => void
 }
 
-const milks = ['Обычное', 'Соевое', 'Миндальное']
-const sugars = ['Без сахара', '1 ложка', '2 ложки']
-
 export const ProductDialog = ({
   product,
-  activeMilk,
-  activeSugar,
-  onChangeMilk,
-  onChangeSugar,
+  activeFirst,
+  activeSecond,
+  onChangeFirst,
+  onChangeSecond,
   onClose
 }: ProductDialogProps) => {
   if (!product) return null
 
   return (
     <div
-      className='fixed inset-0 duration-300 bg-black bg-opacity-50 flex items-center justify-center'
+      className='fixed inset-0 bg-black bg-opacity-50 p-[7px] transition-opacity duration-300 ease-in-out flex items-center justify-center'
       onClick={onClose}
     >
       <div
-        className='bg-mainBgColor p-6 sm:p-2 rounded-2xl w-full max-w-lg shadow-xl relative'
+        className='bg-mainBgColor p-6 sm:p-2 sm:pt-[20px] sm:pb-[20px] rounded-2xl w-full max-w-lg shadow-xl relative transform transition-transform duration-300 ease-in-out'
         onClick={e => e.stopPropagation()}
       >
         <button
@@ -60,19 +61,19 @@ export const ProductDialog = ({
           </div>
         </div>
         <div className='mt-4'>
-          <p className='text-sm font-semibold mb-2'>Выберите молоко:</p>
-          <div className='flex space-x-4 mb-4'>
-            {milks.map((el, index) => (
+          <p className='text-sm font-semibold mb-2'>Выберите первую опцию:</p>
+          <div className='flex gap-[16px] sm:gap-[10px] flex-wrap mb-4'>
+            {product.options.first.map((el, index) => (
               <div
                 key={el}
                 className={`flex hover:bg-secondareBgColor group duration-300 items-center gap-[5px] border-[1px] 
                       ${
-                        activeMilk === index
+                        activeFirst === index
                           ? 'bg-secondareBgColor border-mainBgColor text-mainBgColor'
                           : 'border-[#C1B6AD] text-black hover:text-mainBgColor'
                       }
                       rounded-[100px] h-11 pl-4 pr-6 sm:px-[15px] hover:cursor-pointer`}
-                onClick={() => onChangeMilk(index)}
+                onClick={() => onChangeFirst(index)}
               >
                 <p className='font-[600] text-[16px]'>{el}</p>
               </div>
@@ -81,19 +82,19 @@ export const ProductDialog = ({
         </div>
 
         <div>
-          <p className='text-sm font-semibold mb-2'>Выберите сахар:</p>
-          <div className='flex space-x-4'>
-            {sugars.map((el, index) => (
+          <p className='text-sm font-semibold mb-2'>Выберите вторую опцию:</p>
+          <div className='flex gap-[16px] sm:gap-[10px] flex-wrap'>
+            {product.options.second.map((el, index) => (
               <div
                 key={el}
                 className={`flex hover:bg-secondareBgColor group duration-300 items-center gap-[5px] border-[1px] 
                       ${
-                        activeSugar === index
+                        activeSecond === index
                           ? 'bg-secondareBgColor border-mainBgColor text-mainBgColor'
                           : 'border-[#C1B6AD] text-black hover:text-mainBgColor'
                       }
                       rounded-[100px] h-11 pl-4 pr-6 sm:px-[15px] hover:cursor-pointer`}
-                onClick={() => onChangeSugar(index)}
+                onClick={() => onChangeSecond(index)}
               >
                 <p className='font-[600] text-[16px]'>{el}</p>
               </div>

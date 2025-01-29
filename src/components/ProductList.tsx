@@ -12,8 +12,8 @@ export const ProductList = () => {
   const dispatch = useAppDispatch()
   const { items, status } = useSelector(selectPizzaData)
   const [selectedProduct, setSelectedProduct] = useState<null | Products>(null)
-  const [activeMilk, setActiveMilk] = useState(0)
-  const [activeSugar, setActiveSugar] = useState(0)
+  const [activeFirst, setactiveFirst] = useState(0)
+  const [activeSecond, setactiveSecond] = useState(0)
 
   useEffect(() => {
     dispatch(
@@ -63,8 +63,8 @@ export const ProductList = () => {
           <button
             className='mt-auto flex items-center justify-center bg-secondareBgColor text-mainBgColor py-2 rounded-full hover:bg-opacity-90 hover:scale-105 hover:shadow-lg transition-transform duration-300'
             onClick={() => {
-              setActiveMilk(0)
-              setActiveSugar(0)
+              setactiveFirst(0)
+              setactiveSecond(0)
               setSelectedProduct(el)
             }}
           >
@@ -77,10 +77,10 @@ export const ProductList = () => {
       {selectedProduct && (
         <ProductDialog
           product={selectedProduct}
-          activeMilk={activeMilk}
-          activeSugar={activeSugar}
-          onChangeMilk={setActiveMilk}
-          onChangeSugar={setActiveSugar}
+          activeFirst={activeFirst}
+          activeSecond={activeSecond}
+          onChangeFirst={setactiveFirst}
+          onChangeSecond={setactiveSecond}
           onClose={() => setSelectedProduct(null)}
         />
       )}
