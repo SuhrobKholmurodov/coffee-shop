@@ -1,16 +1,22 @@
-import { X } from 'lucide-react'
+import { MessageCircle, X } from 'lucide-react'
+import { Reviews } from '../redux/products/types'
+import { Link } from 'react-router-dom'
 
 interface Product {
   id: number
   name: string
   description: string
   price: number
+  category: number
   imageUrl: string
   options: {
     first: string[]
     second: string[]
   }
+  reviews: Reviews[]
 }
+
+const categoryNames = ['coffees', 'teas', 'desserts']
 
 interface ProductDialogProps {
   product: Product | null
@@ -54,14 +60,23 @@ export const ProductDialog = ({
           />
           <div>
             <h2 className='text-xl font-bold text-gray-800'>{product.name}</h2>
-            <p className='text-gray-600 dark:text-gray-400 text-sm flex-grow overflow-hidden text-ellipsis'>
+            <Link
+              to={`/${categoryNames[product.category]}/${product.id}`}
+              className='text-gray-600 dark:text-gray-400 text-sm flex-grow overflow-hidden text-ellipsis'
+            >
               {product.description.split(' ').slice(0, 12).join(' ')}
               {product.description.split(' ').length > 20 && (
                 <span className='text-blue-500 cursor-pointer'>...more</span>
               )}
-            </p>
+            </Link>
             <p className='text-lg font-bold text-gray-800 mt-2'>
               ${product.price}
+            </p>
+            <p className='flex items-center gap-[5px] mt-[10px]'>
+              <MessageCircle />
+              <span className='text-sm font-semibold'>
+                Reviews: {product.reviews.length}
+              </span>{' '}
             </p>
           </div>
         </div>
