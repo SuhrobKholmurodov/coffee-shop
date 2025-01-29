@@ -6,7 +6,7 @@ const Header = () => {
   return (
     <header className='flex fixed top-0 left-0 right-0 bg-[#E1D4C9] items-center justify-between py-1 px-[3%] shadow-md text-gray-800'>
       <Link to={'/'}>
-        <img className='w-[90px] object-cover h-[50px]' src={logoMain} alt='' />
+        <img className='w-[90px] sm:hidden object-cover h-[50px]' src={logoMain} alt='' />
       </Link>
       <nav>
         <ul className='flex space-x-12'>

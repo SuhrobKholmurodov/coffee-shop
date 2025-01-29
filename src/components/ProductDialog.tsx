@@ -54,7 +54,12 @@ export const ProductDialog = ({
           />
           <div>
             <h2 className='text-xl font-bold text-gray-800'>{product.name}</h2>
-            <p className='text-gray-600'>{product.description}</p>
+            <p className='text-gray-600 dark:text-gray-400 text-sm flex-grow overflow-hidden text-ellipsis'>
+              {product.description.split(' ').slice(0, 12).join(' ')}
+              {product.description.split(' ').length > 20 && (
+                <span className='text-blue-500 cursor-pointer'>...more</span>
+              )}
+            </p>
             <p className='text-lg font-bold text-gray-800 mt-2'>
               ${product.price}
             </p>

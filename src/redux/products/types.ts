@@ -4,6 +4,7 @@ export type Products = {
   description: string
   price: number
   imageUrl: string
+  category: number
   options: {
     first: string[]
     second: string[]

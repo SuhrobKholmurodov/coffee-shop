@@ -3,10 +3,11 @@ import { useSelector } from 'react-redux'
 import { selectPizzaData } from '../redux/products/selectors'
 import { fetchProducts } from '../redux/products/asyncActions'
 import { useAppDispatch } from '../redux/store'
-import { ShoppingCart } from 'lucide-react'
+import { Eye, ShoppingCart } from 'lucide-react'
 import { Products } from '../redux/products/types'
 import { Skeleton } from './Skeleteon'
 import { ProductDialog } from './ProductDialog'
+import { Link } from 'react-router-dom'
 
 export const ProductList = () => {
   const dispatch = useAppDispatch()
@@ -14,6 +15,8 @@ export const ProductList = () => {
   const [selectedProduct, setSelectedProduct] = useState<null | Products>(null)
   const [activeFirst, setactiveFirst] = useState(0)
   const [activeSecond, setactiveSecond] = useState(0)
+
+  const categories = ['coffees', 'teas', 'desserts']
 
   useEffect(() => {
     dispatch(
@@ -42,7 +45,7 @@ export const ProductList = () => {
       {items.map(el => (
         <div
           key={el.id}
-          className='border border-secondareBgColor p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 sm:h-auto flex flex-col h-[420px]'
+          className='border border-secondareBgColor p-4 sm:p-3 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 sm:h-auto flex flex-col h-[420px]'
         >
           <div className='flex justify-center mb-3'>
             <img
@@ -57,23 +60,44 @@ export const ProductList = () => {
           <p className='text-gray-600 dark:text-gray-400 text-sm flex-grow overflow-hidden text-ellipsis'>
             {el.description.split(' ').slice(0, 10).join(' ')}
             {el.description.split(' ').length > 10 && (
-              <span className='text-blue-500 cursor-pointer'>...more</span>
+              <Link
+                to={`/${categories[el.category]}/${el.id}`}
+                className='text-blue-500 cursor-pointer'
+              >
+                ...more
+              </Link>
             )}
           </p>
-          <p className='font-bold text-gray-800 dark:text-white text-lg mt-2'>
-            ${el.price}
-          </p>
-          <button
-            className='mt-auto flex items-center justify-center bg-secondareBgColor text-mainBgColor py-2 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
-            onClick={() => {
-              setactiveFirst(0)
-              setactiveSecond(0)
-              setSelectedProduct(el)
-            }}
-          >
-            <ShoppingCart className='mr-2' size={20} />
-            Add to cart
-          </button>
+          <div className='flex mb-2 items-center justify-between'>
+            <p className='font-bold text-gray-800 dark:text-white text-lg mt-2'>
+              ${el.price}
+            </p>
+            <Link
+              to={`/${categories[el.category]}/${el.id}`}
+              className='flex sm:hidden items-center mt-[5px] justify-center bg-blue-600 text-white py-2 px-2 rounded-lg hover:bg-blue-600'
+            >
+              <Eye size={20} />
+            </Link>
+          </div>
+          <div className='sm:flex sm:items-center sm:justify-between'>
+            <button
+              className='mt-auto sm:px-[20px] w-full sm:w-auto flex items-center justify-center bg-secondareBgColor text-mainBgColor py-2 rounded-2xl hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
+              onClick={() => {
+                setactiveFirst(0)
+                setactiveSecond(0)
+                setSelectedProduct(el)
+              }}
+            >
+              <ShoppingCart className='mr-2' size={20} />
+              <span className='sm:hidden'>Add to cart</span>
+            </button>
+            <Link
+              to={`/${categories[el.category]}/${el.id}`}
+              className='mt-auto hidden sm:px-[20px] sm:flex items-center justify-center bg-blue-600 text-mainBgColor py-2 rounded-2xl hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
+            >
+              <Eye size={20} />
+            </Link>
+          </div>
         </div>
       ))}
 
