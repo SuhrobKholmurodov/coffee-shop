@@ -9,7 +9,12 @@ export default {
       md: { max: '1010px' },
       sm: { max: '428px' }
     },
-    extend: {}
+    extend: {
+      colors: {
+        mainBgColor: '#E1D4C9',
+        secondareBgColor: "#665F55"
+      }
+    }
   },
   plugins: []
 }

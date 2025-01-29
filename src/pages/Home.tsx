@@ -1,40 +1,51 @@
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { selectPizzaData } from '../redux/products/selectors'
-import { fetchProducts } from '../redux/products/asyncActions'
-import { useAppDispatch } from '../redux/store'
+import { useState } from 'react'
+import { ProductList } from '../components'
+import cofeecat from '../assets/icons/coffeecat.svg'
+import desertcat from '../assets/icons/desertcat.svg'
+import teacat from '../assets/icons/teacat.svg'
 
 export const Home = () => {
-  const dispatch = useAppDispatch()
-  const { items, status } = useSelector(selectPizzaData)
+  const [active, setActive] = useState(0)
 
-  useEffect(() => {
-    dispatch(
-      fetchProducts({ sortBy: 'name', order: 'asc', category: '', search: '' })
-    )
-  }, [dispatch])
+  const categories = [
+    { name: 'Coffee', icon: cofeecat },
+    { name: 'Tea', icon: teacat },
+    { name: 'Desert', icon: desertcat }
+  ]
 
-  if (status === 'loading') {
-    return <div>Loading...</div>
-  }
-
-  if (status === 'error') {
-    return <div>Error loading products.</div>
+  const onChangeCategory = (index: number) => {
+    setActive(index)
   }
 
   return (
     <div>
-      <h1>Products</h1>
-      <div className='product-list'>
-        {items.map(el => (
-          <div key={el.id} className='el-card'>
-            <img className='h-[50px] w-[50px]' src={el.imageUrl} alt={el.name} />
-            <h2>{el.name}</h2>
-            <p>{el.description}</p>
-            <p>Price: ${el.price}</p>
+      <div className='flex space-x-4 items-center justify-center mb-4'>
+        {categories.map((el, index) => (
+          <div
+            key={el.name}
+            className={`flex hover:bg-secondareBgColor group duration-300 items-center gap-[5px] border-[1px] 
+              ${
+                active === index
+                  ? 'bg-secondareBgColor border-mainBgColor text-mainBgColor'
+                  : 'border-[#C1B6AD] text-black hover:text-mainBgColor'
+              }
+              rounded-[100px] h-11 pl-2 pr-6 hover:cursor-pointer`}
+            onClick={() => onChangeCategory(index)}
+          >
+            <div
+              className={` ${
+                active === index
+                  ? 'bg-mainBgColor border-mainBgColor'
+                  : 'bg-[#b4a89e] border-[#b4a89e]'
+              } border-2 group-hover:bg-mainBgColor group-hover:border-mainBgColor rounded-full p-[2px]`}
+            >
+              <img src={el.icon} alt={el.name} width='20' height='20' />
+            </div>
+            <p className='font-[600] text-[16px]'>{el.name}</p>
           </div>
         ))}
       </div>
+      <ProductList />{' '}
     </div>
   )
 }
