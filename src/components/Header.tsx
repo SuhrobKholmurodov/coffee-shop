@@ -5,9 +5,11 @@ import logoMain from '../assets/icons/logoMain.svg'
 const Header = () => {
   return (
     <header className='flex items-center justify-between py-4 px-[3%] shadow-md text-gray-800'>
-      <img className='w-[90px] object-cover h-[50px]' src={logoMain} alt='' />
+      <Link to={'/'}>
+        <img className='w-[90px] object-cover h-[50px]' src={logoMain} alt='' />
+      </Link>
       <nav>
-        <ul className='flex space-x-[100px]'>
+        <ul className='flex space-x-12'>
           <li>
             <NavLink to='/' className='hover:text-[#665F55]'>
               Главная
@@ -26,8 +28,15 @@ const Header = () => {
         </ul>
       </nav>
       <div>
-        <Link to={'/cart'}>
-          <ShoppingCart />
+        <input
+          type='text'
+          placeholder='search'
+          className='px-3 py-2 border border-grayrrer-300 rounded-md focus:outline-none focus:ring-1 focus:ring-[#665F55]'
+        />
+      </div>
+      <div>
+        <Link to={'/cart'} className='p-2 hover:bg-gray-100 rounded-full'>
+          <ShoppingCart size={24} />
         </Link>
       </div>
     </header>
