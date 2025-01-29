@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useMemo } from 'react'
 import { useSelector } from 'react-redux'
 import { selectPizzaData } from '../redux/products/selectors'
 import { fetchProducts } from '../redux/products/asyncActions'
@@ -9,20 +9,35 @@ import { Skeleton } from './Skeleteon'
 import { ProductDialog } from './ProductDialog'
 import { Link } from 'react-router-dom'
 
-export const ProductList = () => {
+interface ProductListProps {
+  categoryId: number
+}
+
+const categoryNames = ['coffees', 'teas', 'desserts']
+
+export const ProductList = ({ categoryId }: ProductListProps) => {
   const dispatch = useAppDispatch()
   const { items, status } = useSelector(selectPizzaData)
   const [selectedProduct, setSelectedProduct] = useState<null | Products>(null)
   const [activeFirst, setactiveFirst] = useState(0)
   const [activeSecond, setactiveSecond] = useState(0)
 
-  const categories = ['coffees', 'teas', 'desserts']
+  const categories = useMemo(() => [0, 1, 2], [])
 
   useEffect(() => {
     dispatch(
-      fetchProducts({ sortBy: 'name', order: 'asc', category: '', search: '' })
+      fetchProducts({
+        sortBy: 'name',
+        order: 'asc',
+        category: categoryId,
+        search: ''
+      })
     )
-  }, [dispatch])
+  }, [categories, dispatch, categoryId])
+
+  const filteredItems = items.filter(
+    item => item.category === categories[categoryId]
+  )
 
   if (status === 'loading') {
     return (
@@ -42,7 +57,7 @@ export const ProductList = () => {
 
   return (
     <div className='grid grid-cols-4 sm:grid-cols-2 gap-6'>
-      {items.map(el => (
+      {filteredItems.map(el => (
         <div
           key={el.id}
           className='border border-secondareBgColor p-4 sm:p-3 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 sm:h-auto flex flex-col h-[420px]'
@@ -61,7 +76,7 @@ export const ProductList = () => {
             {el.description.split(' ').slice(0, 10).join(' ')}
             {el.description.split(' ').length > 10 && (
               <Link
-                to={`/${categories[el.category]}/${el.id}`}
+                to={`/${categoryNames[el.category]}/${el.id}`}
                 className='text-blue-500 cursor-pointer'
               >
                 ...more
@@ -73,7 +88,7 @@ export const ProductList = () => {
               ${el.price}
             </p>
             <Link
-              to={`/${categories[el.category]}/${el.id}`}
+              to={`/${categoryNames[el.category]}/${el.id}`}
               className='flex sm:hidden items-center mt-[5px] justify-center bg-blue-600 text-white py-2 px-2 rounded-lg hover:bg-blue-600'
             >
               <Eye size={20} />
@@ -92,7 +107,7 @@ export const ProductList = () => {
               <span className='sm:hidden'>Add to cart</span>
             </button>
             <Link
-              to={`/${categories[el.category]}/${el.id}`}
+              to={`/${categoryNames[el.category]}/${el.id}`}
               className='mt-auto hidden sm:px-[20px] sm:flex items-center justify-center bg-blue-600 text-mainBgColor py-2 rounded-2xl hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
             >
               <Eye size={20} />

@@ -24,7 +24,7 @@ export interface ProductsSliceState {
 
 export type SearchProductsParams = {
   sortBy: string
-  category: string
+  category: number
   order: string
   search: string
 }

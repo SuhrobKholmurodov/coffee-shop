@@ -23,7 +23,7 @@ export const ProductDetails = () => {
         fetchProducts({
           sortBy: 'name',
           order: 'asc',
-          category: '',
+          category: 0,
           search: ''
         })
       )

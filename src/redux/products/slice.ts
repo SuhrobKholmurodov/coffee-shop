@@ -19,16 +19,19 @@ const ProductsSlice = createSlice({
     builder.addCase(fetchProducts.pending, state => {
       state.status = Status.LOADING
       state.items = []
+      console.log("Fetching products..."); 
     })
 
     builder.addCase(fetchProducts.fulfilled, (state, action) => {
       state.items = action.payload
       state.status = Status.SUCCESS
+      console.log("Products fetched successfully:", action.payload);
     })
 
     builder.addCase(fetchProducts.rejected, state => {
       state.status = Status.ERROR
       state.items = []
+      console.error("Error fetching products.");
     })
   }
 })
