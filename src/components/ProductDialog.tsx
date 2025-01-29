@@ -1,4 +1,4 @@
-import { MessageCircle, X } from 'lucide-react'
+import { Eye, MessageCircle, ShoppingBasket, X } from 'lucide-react'
 import { Reviews } from '../redux/products/types'
 import { Link } from 'react-router-dom'
 
@@ -72,12 +72,15 @@ export const ProductDialog = ({
             <p className='text-lg font-bold text-gray-800 mt-2'>
               ${product.price}
             </p>
-            <p className='flex items-center gap-[5px] mt-[10px]'>
+            <Link
+              to={`/${categoryNames[product.category]}/${product.id}`}
+              className='flex items-center gap-[5px] mt-[10px]'
+            >
               <MessageCircle />
               <span className='text-sm font-semibold'>
                 Reviews: {product.reviews.length}
               </span>{' '}
-            </p>
+            </Link>
           </div>
         </div>
         <div className='mt-4'>
@@ -121,9 +124,23 @@ export const ProductDialog = ({
             ))}
           </div>
         </div>
-        <button className='mt-6 w-full bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'>
-          Add to cart
-        </button>
+        <div className='flex mt-6 flex-row-reverse items-center gap-[20px]'>
+          <button className='w-full flex items-center justify-center gap-[5px] bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'>
+            <ShoppingBasket size={20} />
+            Add to cart
+          </button>
+          <Link
+            to={`/${categoryNames[product.category]}/${product.id}`}
+            className='flex w-full items-center justify-center bg-blue-600 text-white py-3 rounded-full hover:bg-blue-600 hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
+          >
+            <div className='flex items-center gap-[5px]'>
+              <p>
+                <Eye size={20} />
+              </p>
+              <p>More Details</p>
+            </div>
+          </Link>
+        </div>
       </div>
     </div>
   )

@@ -56,7 +56,7 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
   }
 
   return (
-    <div className='grid grid-cols-4 sm:grid-cols-2 gap-6'>
+    <div className='grid grid-cols-4 sm:grid-cols-1 gap-6'>
       {filteredItems.map(el => (
         <div
           key={el.id}
@@ -64,7 +64,7 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
         >
           <div className='flex justify-center mb-3'>
             <img
-              className='h-[160px] sm:h-[100px] sm:w-[100px] w-[160px] object-cover'
+              className='h-[160px] w-[160px] object-cover'
               src={el.imageUrl}
               alt={el.name}
             />
@@ -105,7 +105,7 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
               </div>
             </Link>
           </div>
-          <div className='sm:flex sm:items-center sm:justify-between'>
+          <div className='sm:grid sm:grid-cols-2 sm:gap-2'>
             <button
               className='mt-auto sm:px-[20px] w-full sm:w-auto flex items-center justify-center bg-secondareBgColor text-mainBgColor py-2 rounded-2xl hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
               onClick={() => {
@@ -115,13 +115,18 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
               }}
             >
               <ShoppingCart className='mr-2' size={20} />
-              <span className='sm:hidden'>Add to cart</span>
+              <span>Add to cart</span>
             </button>
             <Link
               to={`/${categoryNames[el.category]}/${el.id}`}
-              className='mt-auto hidden sm:px-[20px] sm:flex items-center justify-center bg-blue-600 text-mainBgColor py-2 rounded-2xl hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
+              className='sm:flex hidden items-center justify-center bg-blue-600 text-white py-2 px-2 rounded-2xl hover:bg-blue-600'
             >
-              <Eye size={20} />
+              <div className='flex items-center gap-[5px]'>
+                <p>
+                  <Eye size={20} />
+                </p>
+                <p>More Details</p>
+              </div>
             </Link>
           </div>
         </div>
