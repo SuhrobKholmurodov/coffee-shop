@@ -1,3 +1,12 @@
+export type Reviews = {
+  profilePhoto: string
+  name: string
+  comment: string
+  date: string
+  rating: number
+  recomendation: boolean
+}
+
 export type Products = {
   id: number
   name: string
@@ -9,6 +18,7 @@ export type Products = {
     first: string[]
     second: string[]
   }
+  reviews: Reviews[]
 }
 
 export enum Status {

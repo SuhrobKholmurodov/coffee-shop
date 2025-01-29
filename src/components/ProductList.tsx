@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux'
 import { selectPizzaData } from '../redux/products/selectors'
 import { fetchProducts } from '../redux/products/asyncActions'
 import { useAppDispatch } from '../redux/store'
-import { Eye, ShoppingCart } from 'lucide-react'
+import { Eye, MessageCircle, ShoppingCart } from 'lucide-react'
 import { Products } from '../redux/products/types'
 import { Skeleton } from './Skeleteon'
 import { ProductDialog } from './ProductDialog'
@@ -83,15 +83,26 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
               </Link>
             )}
           </p>
-          <div className='flex mb-2 items-center justify-between'>
-            <p className='font-bold text-gray-800 dark:text-white text-lg mt-2'>
-              ${el.price}
-            </p>
+          <div className='flex mb-2 items-end justify-between'>
+            <div className='flex flex-col'>
+              <p className='font-bold text-gray-800 dark:text-white text-lg mt-2'>
+                ${el.price}
+              </p>
+              <div className='flex items-center gap-[5px] text-gray-600 font-[700]'>
+                <MessageCircle />
+                <p>{el.reviews.length}</p> reviews
+              </div>
+            </div>
             <Link
               to={`/${categoryNames[el.category]}/${el.id}`}
-              className='flex sm:hidden items-center mt-[5px] justify-center bg-blue-600 text-white py-2 px-2 rounded-lg hover:bg-blue-600'
+              className='flex sm:hidden items-center justify-center bg-blue-600 text-white py-2 px-2 rounded-lg hover:bg-blue-600'
             >
-              <Eye size={20} />
+              <div className='flex items-center gap-[5px]'>
+                <p>
+                  <Eye size={20} />
+                </p>
+                <p>More Details</p>
+              </div>
             </Link>
           </div>
           <div className='sm:flex sm:items-center sm:justify-between'>
