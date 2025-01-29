@@ -19,6 +19,16 @@ export const Home = () => {
 
   return (
     <div>
+      <div>
+        <p style={{lineHeight:"125%"}} className='text-[60px] pb-[3%] font-[600] text-center'>
+          Behind each of our cups hides an{' '}
+          <span
+            className='text-[#B0907A] leading-[1px] italic'
+          >
+            amazing <br /> surprise
+          </span>
+        </p>
+      </div>
       <div className='flex space-x-4 items-center justify-center mb-4'>
         {categories.map((el, index) => (
           <div

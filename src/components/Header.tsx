@@ -35,7 +35,7 @@ const Header = () => {
         />
       </div>
       <div>
-        <Link to={'/cart'} className='p-2 hover:bg-gray-100 rounded-full'>
+        <Link to={'/cart'} className='p-2 rounded-full'>
           <ShoppingCart size={24} />
         </Link>
       </div>
