@@ -88,10 +88,13 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
               <p className='font-bold text-gray-800 dark:text-white text-lg mt-2'>
                 ${el.price}
               </p>
-              <div className='flex items-center gap-[5px] text-gray-600 font-[700]'>
+              <Link
+                to={`/${categoryNames[el.category]}/${el.id}`}
+                className='flex items-center gap-[5px] text-gray-600 font-[700]'
+              >
                 <MessageCircle />
                 <p>{el.reviews.length}</p> reviews
-              </div>
+              </Link>
             </div>
           </div>
           <div className='grid grid-cols-2 gap-2'>
