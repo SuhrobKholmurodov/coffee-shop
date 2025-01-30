@@ -68,7 +68,6 @@ const ProductDetails = () => {
   if (status === 'loading' || !items.length) {
     return <div className='text-center'>Загрузка...</div>
   }
-  
 
   if (!product) {
     return <div className='text-red-500 text-center'>Продукт не найден.</div>
@@ -175,27 +174,35 @@ const ProductDetails = () => {
               ${product.price}
             </p>
             <div className='flex items-center justify-between gap-12 sm:gap-4 sm:w-full mt-4 sm:mt-2'>
-              <div className='flex gap-4 items-center'>
-                <button
-                  onClick={onClickMinus}
-                  className='p-2 sm:p-1 bg-[#c6c5c5] rounded-full'
-                >
-                  <Minus />
-                </button>
-                <p className='text-xl text-gray-700'>{count}</p>
-                <button
-                  onClick={onClickAdd}
-                  className='p-2 sm:p-1 bg-[#c6c5c5] rounded-full'
-                >
-                  <Plus />
-                </button>
-              </div>
-              <p className='text-xl text-gray-700'>
-                {product.price * count} $
-              </p>
+              {count >= 1 && (
+                <div className='flex gap-8 sm:gap-2 items-center'>
+                  <button
+                    onClick={onClickMinus}
+                    disabled={count === 1}
+                    style={{
+                      cursor: count === 1 ? 'not-allowed' : 'pointer',
+                      backgroundColor: count == 1 ? '#e6e5e5' : '#c6c5c5'
+                    }}
+                    className='p-2 sm:p-1 bg-[#c6c5c5] rounded-full'
+                  >
+                    <Minus />
+                  </button>
+                  <p className='text-xl text-gray-700'>{count}</p>
+                  <button
+                    onClick={onClickAdd}
+                    className='p-2 sm:p-1 bg-[#c6c5c5] rounded-full'
+                  >
+                    <Plus />
+                  </button>
+                  <p className='text-xl ml-4 sm:pl-[15px] text-gray-700'>
+                    {product.price * count} $
+                  </p>
+                </div>
+              )}
               <button
                 onClick={onClickAdd}
-                className='ml-4 sm:ml-0 flex items-center justify-center gap-[5px] sm:px-2 sm:py-2 px-4 bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
+                style={{ width: count < 1 ? '100%' : 'auto' }}
+                className='ml-4 sm:ml-0 flex items-center justify-center gap-[5px] sm:py-2 px-4 bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
               >
                 <ShoppingBasket size={20} />
                 Add to cart
