@@ -1,4 +1,3 @@
-export * from './Footer'
 export * from './Header'
 export * from './ProductDialog'
 export * from './ProductList'

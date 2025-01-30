@@ -93,9 +93,11 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
                 <p>{el.reviews.length}</p> reviews
               </div>
             </div>
+          </div>
+          <div className='grid grid-cols-2 gap-2'>
             <Link
               to={`/${categoryNames[el.category]}/${el.id}`}
-              className='flex sm:hidden items-center justify-center bg-blue-600 text-white py-2 px-2 rounded-lg hover:bg-blue-600'
+              className='items-center justify-center bg-blue-600 text-white py-2 px-2 rounded-2xl  hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300 hover:bg-blue-600'
             >
               <div className='flex items-center gap-[5px]'>
                 <p>
@@ -104,8 +106,6 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
                 <p>More Details</p>
               </div>
             </Link>
-          </div>
-          <div className='sm:grid sm:grid-cols-2 sm:gap-2'>
             <button
               className='mt-auto sm:px-[20px] w-full sm:w-auto flex items-center justify-center bg-secondareBgColor text-mainBgColor py-2 rounded-2xl hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
               onClick={() => {
@@ -117,17 +117,6 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
               <ShoppingCart className='mr-2' size={20} />
               <span>Add to cart</span>
             </button>
-            <Link
-              to={`/${categoryNames[el.category]}/${el.id}`}
-              className='sm:flex hidden items-center justify-center bg-blue-600 text-white py-2 px-2 rounded-2xl hover:bg-blue-600'
-            >
-              <div className='flex items-center gap-[5px]'>
-                <p>
-                  <Eye size={20} />
-                </p>
-                <p>More Details</p>
-              </div>
-            </Link>
           </div>
         </div>
       ))}

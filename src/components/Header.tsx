@@ -50,13 +50,14 @@ const Header = () => {
           </Link>
         </div>
       </header>
-      <main className='px-[3%] sm:pt-[20%] pt-[7%] sm:pb-[95px] pb-[40px] flex-grow'>
+      <main className='px-[3%] sm:pt-[20%] pt-[7%] sm:pb-[80px] pb-[20px] flex-grow'>
         <Outlet />
       </main>
       <div className='sm:flex hidden fixed bottom-0 left-0 right-0'>
         <Box sx={{ width: '100%' }}>
           <BottomNavigation
             showLabels
+            sx={{ backgroundColor: '#E1D4C9', boxShadow: "0 0 0 1px #665F55"}}
             value={value}
             onChange={(_, newValue) => {
               setValue(newValue)
