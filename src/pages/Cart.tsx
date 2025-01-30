@@ -1,16 +1,37 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { CartItem } from '../redux/cart/types'
 import { Minus, Plus, Trash2 } from 'lucide-react'
+import Dialog from '@mui/material/Dialog'
+import DialogActions from '@mui/material/DialogActions'
+import DialogContent from '@mui/material/DialogContent'
+import DialogContentText from '@mui/material/DialogContentText'
+import DialogTitle from '@mui/material/DialogTitle'
+import { Button } from '@mui/material'
+import { useDispatch, useSelector } from 'react-redux'
+import { removeItem } from '../redux/cart/slice'
+import { selectCart } from '../redux/cart/selectors'
 
 export const Cart = () => {
-  const [cartItems, setCartItems] = useState([])
+  const [open, setOpen] = useState(false)
+  const [selectedItem, setSelectedItem] = useState<CartItem | null>(null)
+  const dispatch = useDispatch()
+
+  const cartItems = useSelector(selectCart)
+
+  const handleClickOpen = (item: CartItem) => {
+    setSelectedItem(item)
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+    setSelectedItem(null)
+  }
+
   useEffect(() => {
-    const storedCart = localStorage.getItem('cart')
-    if (storedCart) {
-      setCartItems(JSON.parse(storedCart))
-    }
-  }, [])
+    localStorage.setItem('cart', JSON.stringify(cartItems.items))
+  }, [cartItems.items])
 
   return (
     <div>
@@ -18,10 +39,10 @@ export const Cart = () => {
         <title>Cart</title>
       </Helmet>
       <div>
-        {cartItems.length === 0 ? (
+        {cartItems.items.length === 0 ? (
           <p>Your cart is empty</p>
         ) : (
-          cartItems.map((item: CartItem) => (
+          cartItems.items.map((item: CartItem) => (
             <div
               key={item.id}
               className='flex sm:max-w-full items-center max-w-[50%] gap-4 sm:gap-2 p-4 sm:px-2 border-b-2 border-gray-900'
@@ -68,7 +89,10 @@ export const Cart = () => {
                   <p className='text-xl sm:pl-2 text-gray-700'>
                     {item.price * item.count}$
                   </p>
-                  <button className='p-2 text-white rounded-md flex items-center space-x-2'>
+                  <button
+                    onClick={() => handleClickOpen(item)}
+                    className='p-2 text-red-800 rounded-md flex items-center space-x-2'
+                  >
                     <Trash2 />
                   </button>
                 </div>
@@ -77,6 +101,35 @@ export const Cart = () => {
           ))
         )}
       </div>
+
+      <Dialog
+        open={open}
+        onClose={handleClose}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
+      >
+        <DialogTitle id='alert-dialog-title'>{'Delete item?'}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            Are you sure you want to delete
+            <span className='text-green-700'> {selectedItem?.name}?</span>
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleClose}>Disagree</Button>
+          <Button
+            onClick={() => {
+              if (selectedItem?.id !== undefined) {
+                dispatch(removeItem(selectedItem.id.toString()))
+              }
+              handleClose()
+            }}
+            autoFocus
+          >
+            Agree
+          </Button>{' '}
+        </DialogActions>
+      </Dialog>
     </div>
   )
 }
