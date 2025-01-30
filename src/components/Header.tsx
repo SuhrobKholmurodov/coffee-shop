@@ -5,9 +5,17 @@ import Box from '@mui/material/Box'
 import BottomNavigation from '@mui/material/BottomNavigation'
 import BottomNavigationAction from '@mui/material/BottomNavigationAction'
 import { useState } from 'react'
+import { useSelector } from 'react-redux'
+import { selectCart } from '../redux/cart/selectors'
+import { Badge } from '@mui/material'
 
 const Header = () => {
+  const { items: cartItems } = useSelector(selectCart)
   const [value, setValue] = useState(0)
+  const totalCount = cartItems.reduce(
+    (sum: number, item) => sum + item.count,
+    0
+  )
   return (
     <div className='sm:flex sm:flex-col sm:min-h-screen'>
       <header className='flex fixed top-0 left-0 right-0 bg-[#E1D4C9] items-center justify-between py-1 px-[3%] shadow-md text-gray-800 z-10'>
@@ -46,7 +54,9 @@ const Header = () => {
         </div>
         <div className='sm:hidden'>
           <Link to={'/cart'} className='p-2 rounded-full'>
-            <ShoppingCart size={24} />
+            <Badge showZero={false} badgeContent={totalCount} color='error'>
+              <ShoppingCart size={28} />
+            </Badge>
           </Link>
         </div>
       </header>
@@ -57,7 +67,7 @@ const Header = () => {
         <Box sx={{ width: '100%' }}>
           <BottomNavigation
             showLabels
-            sx={{ backgroundColor: '#E1D4C9', boxShadow: "0 0 0 1px #665F55"}}
+            sx={{ backgroundColor: '#E1D4C9', boxShadow: '0 0 0 1px #665F55' }}
             value={value}
             onChange={(_, newValue) => {
               setValue(newValue)

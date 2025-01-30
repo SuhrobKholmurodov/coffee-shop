@@ -1,6 +1,11 @@
 import { Eye, MessageCircle, ShoppingBasket, X } from 'lucide-react'
 import { Reviews } from '../redux/products/types'
 import { Link } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { selectCart} from '../redux/cart/selectors'
+import { CartItem } from '../redux/cart/types'
+import { addItem } from '../redux/cart/slice'
+import { useEffect, useRef } from 'react'
 
 interface Product {
   id: number
@@ -19,7 +24,8 @@ interface Product {
 const categoryNames = ['coffees', 'teas', 'desserts']
 
 interface ProductDialogProps {
-  product: Product | null
+  id: number
+  product?: Product | null
   activeFirst: number
   activeSecond: number
   onChangeFirst: (index: number) => void
@@ -35,7 +41,34 @@ export const ProductDialog = ({
   onChangeSecond,
   onClose
 }: ProductDialogProps) => {
+  const dispatch = useDispatch()
+  const { items: cartItems } = useSelector(selectCart)
+  const isMounted = useRef(false)
+
+  useEffect(() => {
+    if (isMounted.current) {
+      const json = JSON.stringify(cartItems)
+      localStorage.setItem('cart', json)
+    }
+    isMounted.current = true
+  }, [cartItems])
   if (!product) return null
+  const onClickAdd = () => {
+    const item: CartItem = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      count: 1,
+      category: product.category,
+      imageUrl: product.imageUrl,
+      options: {
+        first: [product.options.first[activeFirst]],
+        second: [product.options.second[activeSecond]]
+      }
+    }
+    console.log('Добавляем товар в корзину:', item)
+    dispatch(addItem(item))
+  }
 
   return (
     <div
@@ -125,7 +158,10 @@ export const ProductDialog = ({
           </div>
         </div>
         <div className='flex mt-6 flex-row-reverse items-center gap-[20px]'>
-          <button className='w-full flex items-center justify-center gap-[5px] bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'>
+          <button
+            onClick={onClickAdd}
+            className='w-full flex items-center justify-center gap-[5px] bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
+          >
             <ShoppingBasket size={20} />
             Add to cart
           </button>
