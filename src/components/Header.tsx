@@ -62,8 +62,8 @@ const Header = () => {
         </div>
       </header>
       <main
-        className={`px-[3%] sm:pt-[20%] pt-[7%] pb-[20px] flex-grow ${
-          location.pathname === '/cart' ? 'sm:pb-[55px]' : 'sm:pb-[80px]'
+        className={`px-[3%] sm:pt-[20%] pt-[5%] pb-[20px] flex-grow ${
+          location.pathname === '/cart' ? 'sm:pb-[85px]' : 'sm:pb-[80px]'
         }`}
       >
         <Outlet />
