@@ -12,6 +12,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { addItem, clearItems, minusItem, removeItem } from '../redux/cart/slice'
 import { selectCart } from '../redux/cart/selectors'
 import { Link } from 'react-router-dom'
+import { EmptyCart } from '../components'
 
 export const Cart = () => {
   const [open, setOpen] = useState(false)
@@ -85,7 +86,7 @@ export const Cart = () => {
         <title>Cart</title>
       </Helmet>
       {cartItems.items.length === 0 ? (
-        <p>Your cart is empty</p>
+        <EmptyCart />
       ) : (
         <div className='grid grid-cols-2 sm:grid-cols-1'>
           <div className='left mb-[-35px] sm:mb-[-23px]'>
