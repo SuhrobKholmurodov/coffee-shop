@@ -24,7 +24,6 @@ interface Product {
 const categoryNames = ['coffees', 'teas', 'desserts']
 
 interface ProductDialogProps {
-  id: number
   product?: Product | null
   activeFirst: number
   activeSecond: number
