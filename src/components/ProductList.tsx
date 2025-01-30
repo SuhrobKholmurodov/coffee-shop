@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo } from 'react'
 import { useSelector } from 'react-redux'
-import { selectPizzaData } from '../redux/products/selectors'
+import { selectProduct } from '../redux/products/selectors'
 import { fetchProducts } from '../redux/products/asyncActions'
 import { useAppDispatch } from '../redux/store'
 import { Eye, MessageCircle, ShoppingCart } from 'lucide-react'
@@ -17,7 +17,7 @@ const categoryNames = ['coffees', 'teas', 'desserts']
 
 export const ProductList = ({ categoryId }: ProductListProps) => {
   const dispatch = useAppDispatch()
-  const { items, status } = useSelector(selectPizzaData)
+  const { items, status } = useSelector(selectProduct)
   const [selectedProduct, setSelectedProduct] = useState<null | Products>(null)
   const [activeFirst, setactiveFirst] = useState(0)
   const [activeSecond, setactiveSecond] = useState(0)

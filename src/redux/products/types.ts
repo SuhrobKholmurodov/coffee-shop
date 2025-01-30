@@ -19,6 +19,7 @@ export type Products = {
     second: string[]
   }
   reviews: Reviews[]
+  count: number
 }
 
 export enum Status {

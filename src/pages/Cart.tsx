@@ -11,6 +11,7 @@ import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, clearItems, minusItem, removeItem } from '../redux/cart/slice'
 import { selectCart } from '../redux/cart/selectors'
+import { Link } from 'react-router-dom'
 
 export const Cart = () => {
   const [open, setOpen] = useState(false)
@@ -95,11 +96,13 @@ export const Cart = () => {
               >
                 <div>
                   <div className='w-[250px] sm:w-[150px] sm:h-[150px] h-[250px]'>
-                    <img
-                      className='object-cover w-full h-full rounded-md'
-                      src={item.imageUrl}
-                      alt={item.name}
-                    />
+                    <Link to={`/${categoryNames[item.category]}/${item.id}`}>
+                      <img
+                        className='object-cover w-full h-full rounded-md'
+                        src={item.imageUrl}
+                        alt={item.name}
+                      />
+                    </Link>
                   </div>
                 </div>
                 <div className='grid grid-cols-1'>

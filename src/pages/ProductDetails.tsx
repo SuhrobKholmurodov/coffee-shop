@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux'
-import { selectPizzaData } from '../redux/products/selectors'
+import { selectProduct } from '../redux/products/selectors'
 import { NavLink, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Typography from '@mui/material/Typography'
@@ -7,13 +7,15 @@ import Breadcrumbs from '@mui/material/Breadcrumbs'
 import { fetchProducts } from '../redux/products/asyncActions'
 import { Products } from '../redux/products/types'
 import { useAppDispatch } from '../redux/store'
-import { HomeIcon, ShoppingBasket } from 'lucide-react'
+import { HomeIcon, Minus, Plus, ShoppingBasket } from 'lucide-react'
 import { Rating } from '@mui/material'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
 import AccordionDetails from '@mui/material/AccordionDetails'
 import { Helmet } from 'react-helmet'
+import { addItem, minusItem } from '../redux/cart/slice'
+import { selectCartItemById } from '../redux/cart/selectors'
 
 const categoryNames = ['coffees', 'teas', 'desserts']
 
@@ -30,11 +32,13 @@ export const ProductDetails = ({
   onChangeFirst,
   onChangeSecond
 }: ProductDetailsProps) => {
-  const { items, status } = useSelector(selectPizzaData)
+  const { items, status } = useSelector(selectProduct)
   const { id, category } = useParams()
   const dispatch = useAppDispatch()
   const [product, setProduct] = useState<Products | null>(null)
-  const [quantity, setQuantity] = useState(1)
+  const cartItem = useSelector(selectCartItemById(Number(id)))
+
+  const [count, setCount] = useState(cartItem?.count || 0)
 
   useEffect(() => {
     if (!items.length && status !== 'loading') {
@@ -68,6 +72,29 @@ export const ProductDetails = ({
 
   if (!product) {
     return <div className='text-red-500 text-center'>Продукт не найден.</div>
+  }
+
+  const onClickAdd = () => {
+    const item = {
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      count: count,
+      category: product.category,
+      imageUrl: product.imageUrl,
+      options: {
+        first: [product.options.first[activeFirst]],
+        second: [product.options.second[activeSecond]]
+      }
+    }
+    dispatch(addItem(item))
+    setCount(count + 1)
+  }
+  const onClickMinus = () => {
+    if (count > 1) {
+      dispatch(minusItem(product.id.toString()))
+      setCount(count - 1)
+    }
   }
 
   return (
@@ -143,28 +170,33 @@ export const ProductDetails = ({
               ))}
             </div>
           </div>
-          <div className='flex items-center justify-between sm:mb-4'>
-            <p className='text-lg font-semibold text-gray-800 dark:text-white mt-4'>
+          <div className='flex items-center sm:flex-col sm:items-start justify-between mt-4 sm:mt-4 sm:mb-4'>
+            <p className='text-lg sm:hidden font-semibold text-gray-800 dark:text-white'>
               ${product.price}
             </p>
-            <div className='flex items-center mt-4'>
-              <button
-                onClick={() => setQuantity(quantity > 1 ? quantity - 1 : 1)}
-                className='bg-gray-200 rounded-l-full px-3 py-2 text-lg hover:bg-gray-300 transition duration-200'
-              >
-                -
-              </button>
-              <span className='mx-3 text-lg'>{quantity}</span>
-              <button
-                onClick={() => setQuantity(quantity + 1)}
-                className='bg-gray-200 rounded-r-full px-3 py-2 text-lg hover:bg-gray-300 transition duration-200'
-              >
-                +
-              </button>
-              <p className='text-lg font-semibold text-gray-800 dark:text-white'>
-                ${product.price * quantity}
+            <div className='flex items-center justify-between gap-12 sm:w-full mt-4 sm:mt-2'>
+              <div className='flex gap-4 items-center'>
+                <button
+                  onClick={onClickMinus}
+                  className='p-2 sm:p-1 bg-[#c6c5c5] rounded-full'
+                >
+                  <Minus />
+                </button>
+                <p className='text-xl text-gray-700'>{count}</p>
+                <button
+                  onClick={onClickAdd}
+                  className='p-2 sm:p-1 bg-[#c6c5c5] rounded-full'
+                >
+                  <Plus />
+                </button>
+              </div>
+              <p className='text-xl sm:pl-2 text-gray-700'>
+                {product.price * count} $
               </p>
-              <button className='ml-4 flex items-center justify-center gap-[5px] px-4 bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'>
+              <button
+                onClick={onClickAdd}
+                className='ml-4 flex items-center justify-center gap-[5px] px-4 bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
+              >
                 <ShoppingBasket size={20} />
                 Add to cart
               </button>

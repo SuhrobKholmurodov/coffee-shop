@@ -65,7 +65,6 @@ export const ProductDialog = ({
         second: [product.options.second[activeSecond]]
       }
     }
-    console.log('Добавляем товар в корзину:', item)
     dispatch(addItem(item))
   }
 
