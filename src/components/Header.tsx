@@ -105,8 +105,14 @@ const Header = () => {
             <BottomNavigationAction
               label='Cart'
               icon={
-                <Link to={'/cart'}>
-                  <ShoppingCart />
+                <Link to={'/cart'} className='rounded-full'>
+                  <Badge
+                    showZero={false}
+                    badgeContent={totalCount}
+                    color='error'
+                  >
+                    <ShoppingCart size={28} />
+                  </Badge>
                 </Link>
               }
             />
