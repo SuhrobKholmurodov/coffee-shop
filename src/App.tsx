@@ -6,17 +6,6 @@ import { About, Cart, Contacts, Home, NotFound } from './pages'
 import { ProductDetails } from './pages/ProductDetails'
 
 const App = () => {
-  const [activeFirst, setActiveFirst] = useState(0)
-  const [activeSecond, setActiveSecond] = useState(0)
-
-  const handleChangeFirst = (index: number) => {
-    setActiveFirst(index)
-  }
-
-  const handleChangeSecond = (index: number) => {
-    setActiveSecond(index)
-  }
-
   const router = createBrowserRouter([
     {
       path: '/',
@@ -28,14 +17,7 @@ const App = () => {
         { path: '/cart', element: <Cart /> },
         {
           path: '/:category/:id',
-          element: (
-            <ProductDetails
-              activeFirst={activeFirst}
-              activeSecond={activeSecond}
-              onChangeFirst={handleChangeFirst}
-              onChangeSecond={handleChangeSecond}
-            />
-          )
+          element: <ProductDetails />
         }
       ]
     },

@@ -19,19 +19,18 @@ import { selectCartItemById } from '../redux/cart/selectors'
 
 const categoryNames = ['coffees', 'teas', 'desserts']
 
-interface ProductDetailsProps {
-  activeFirst: number
-  activeSecond: number
-  onChangeFirst: (index: number) => void
-  onChangeSecond: (index: number) => void
-}
+export const ProductDetails = () => {
+  const [activeFirst, setActiveFirst] = useState(0)
+  const [activeSecond, setActiveSecond] = useState(0)
 
-export const ProductDetails = ({
-  activeFirst,
-  activeSecond,
-  onChangeFirst,
-  onChangeSecond
-}: ProductDetailsProps) => {
+  const handleChangeFirst = (index: number) => {
+    setActiveFirst(index)
+  }
+
+  const handleChangeSecond = (index: number) => {
+    setActiveSecond(index)
+  }
+
   const { items, status } = useSelector(selectProduct)
   const { id, category } = useParams()
   const dispatch = useAppDispatch()
@@ -142,7 +141,7 @@ export const ProductDetails = ({
                           : 'border-[#C1B6AD] text-black hover:text-mainBgColor'
                       }
                       rounded-[100px] h-11 pl-4 pr-6 sm:px-[15px] hover:cursor-pointer`}
-                  onClick={() => onChangeFirst(index)}
+                  onClick={() => handleChangeFirst(index)}
                 >
                   <p className='font-[600] text-[16px]'>{el}</p>
                 </div>
@@ -163,7 +162,7 @@ export const ProductDetails = ({
                           : 'border-[#C1B6AD] text-black hover:text-mainBgColor'
                       }
                       rounded-[100px] h-11 pl-4 pr-6 sm:px-[15px] hover:cursor-pointer`}
-                  onClick={() => onChangeSecond(index)}
+                  onClick={() => handleChangeSecond(index)}
                 >
                   <p className='font-[600] text-[16px]'>{el}</p>
                 </div>
