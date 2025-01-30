@@ -1,4 +1,4 @@
-import { NavLink, Link, Outlet } from 'react-router-dom'
+import { NavLink, Link, Outlet, useLocation } from 'react-router-dom'
 import { HomeIcon, Info, Phone, ShoppingCart } from 'lucide-react'
 import logoMain from '../assets/icons/logoMain.svg'
 import Box from '@mui/material/Box'
@@ -10,6 +10,7 @@ import { selectCart } from '../redux/cart/selectors'
 import { Badge } from '@mui/material'
 
 const Header = () => {
+  const location = useLocation()
   const { items: cartItems } = useSelector(selectCart)
   const [value, setValue] = useState(0)
   const totalCount = cartItems.reduce(
@@ -60,7 +61,11 @@ const Header = () => {
           </Link>
         </div>
       </header>
-      <main className='px-[3%] sm:pt-[20%] pt-[7%] sm:pb-[80px] pb-[20px] flex-grow'>
+      <main
+        className={`px-[3%] sm:pt-[20%] pt-[7%] pb-[20px] flex-grow ${
+          location.pathname === '/cart' ? 'sm:pb-[55px]' : 'sm:pb-[80px]'
+        }`}
+      >
         <Outlet />
       </main>
       <div className='sm:flex hidden fixed bottom-0 left-0 right-0'>
