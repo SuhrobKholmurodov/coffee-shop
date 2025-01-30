@@ -9,11 +9,12 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { removeItem } from '../redux/cart/slice'
+import { clearItems, removeItem } from '../redux/cart/slice'
 import { selectCart } from '../redux/cart/selectors'
 
 export const Cart = () => {
   const [open, setOpen] = useState(false)
+  const [openDialogClearItems, setOpenDialogClearItems] = useState(false)
   const [selectedItem, setSelectedItem] = useState<CartItem | null>(null)
   const dispatch = useDispatch()
 
@@ -27,6 +28,19 @@ export const Cart = () => {
   const handleClose = () => {
     setOpen(false)
     setSelectedItem(null)
+  }
+
+  const handleOpenDialog = () => {
+    setOpenDialogClearItems(true)
+  }
+
+  const handleCloseDialog = () => {
+    setOpenDialogClearItems(false)
+  }
+
+  const handleConfirmDelete = () => {
+    dispatch(clearItems())
+    setOpenDialogClearItems(false)
   }
 
   const totalPrice = cartItems.items.reduce(
@@ -54,12 +68,12 @@ export const Cart = () => {
       <Helmet>
         <title>Cart</title>
       </Helmet>
-      <div className='grid grid-cols-2 sm:grid-cols-1'>
-        <div className='left'>
-          {cartItems.items.length === 0 ? (
-            <p>Your cart is empty</p>
-          ) : (
-            cartItems.items.map((item: CartItem) => (
+      {cartItems.items.length === 0 ? (
+        <p>Your cart is empty</p>
+      ) : (
+        <div className='grid grid-cols-2 sm:grid-cols-1'>
+          <div className='left mb-[-35px] sm:mb-[-23px]'>
+            {cartItems.items.map((item: CartItem) => (
               <div
                 key={item.id}
                 className='flex sm:max-w-full items-center gap-4 sm:gap-2 p-4 sm:px-2 border-b-2 border-gray-900'
@@ -93,7 +107,7 @@ export const Cart = () => {
                       </p>
                     </div>
                   </div>
-                  <div className='flex mt-4 w-full items-center justify-between'>
+                  <div className='flex w-[400px] mt-4 sm:w-full items-center justify-between'>
                     <div className='flex gap-2 items-center'>
                       <button className='p-2 sm:p-1 bg-gray-200 rounded-full hover:bg-gray-300'>
                         <Minus />
@@ -115,55 +129,85 @@ export const Cart = () => {
                   </div>
                 </div>
               </div>
-            ))
-          )}
-        </div>
-        <div className='right bg-gray-100 rounded-lg sm:relative sm:top-4 fixed top-[100px] right-[3%] sm:right-0 flex flex-col sm:p-0 p-4'>
-          <div className='flex flex-col gap-[8px] mb-4 rounded-lg p-4 shadow-sm'>
-            <h3 className='text-lg font-bold'>Order summary</h3>
-            <div className='flex items-center justify-between w-full'>
-              <p className='text-gray-500 font-[600] whitespace-nowrap'>
-                Total price:
-              </p>
-              <div className='flex-1 border mt-[10px] border-dashed border-gray-400 mx-2'></div>
-              <p className='font-semibold'>{totalPrice}$</p>
-            </div>
-            <div className='flex items-center justify-between w-full'>
-              <p className='text-gray-500 font-[600]'>Total number of items:</p>
-              <div className='flex-1 border mt-[10px] border-dashed border-gray-400 mx-2'></div>
-              <p>{totalCount}</p>
-            </div>
-            {Object.entries(categoryCounts).map(([category, count]) => (
-              <div
-                key={category}
-                className='flex items-center justify-between w-full'
-              >
-                <p className='text-gray-500 font-[600]'>
-                  From {categoryNames[Number(category)]} category:
-                </p>
-                <div className='flex-1 border mt-[10px] border-dashed border-gray-400 mx-2'></div>
-                <p> {count}</p>
-              </div>
             ))}
           </div>
-          <div className='order-form p-4 shadow-sm rounded-lg'>
-            <h3 className='text-xl font-semibold mb-4'>Оформить заказ</h3>
-            <input
-              type='text'
-              placeholder='Ваше имя'
-              className='border border-gray-300 p-3 mb-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all'
-            />
-            <input
-              type='text'
-              placeholder='Ваш номер'
-              className='border border-gray-300 p-3 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all'
-            />
-            <button className='w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-all'>
-              🚀 Оформить заказ
-            </button>
+          <div className='right bg-gray-100 rounded-lg sm:relative sm:top-4 fixed top-[100px] right-[3%] sm:right-0 flex flex-col sm:p-0 p-4'>
+            <div className='flex flex-col gap-[8px] mb-4 rounded-lg p-4 shadow-sm'>
+              <div className='flex items-center mb-[15px] justify-between'>
+                <h3 className='text-lg font-bold'>Order summary</h3>
+                <div
+                  onClick={handleOpenDialog}
+                  className='flex font-[600] hover:cursor-pointer text-red-500 items-center gap-2'
+                >
+                  <p>Delete all the cart</p>
+                  <Trash2 />
+                </div>
+              </div>
+              <div className='flex items-center justify-between w-full'>
+                <p className='text-gray-500 font-[600] whitespace-nowrap'>
+                  Total price:
+                </p>
+                <div className='flex-1 border mt-[10px] border-dashed border-gray-400 mx-2'></div>
+                <p className='font-semibold'>{totalPrice}$</p>
+              </div>
+              <div className='flex items-center justify-between w-full'>
+                <p className='text-gray-500 font-[600]'>
+                  Total number of items:
+                </p>
+                <div className='flex-1 border mt-[10px] border-dashed border-gray-400 mx-2'></div>
+                <p className='font-semibold'>{totalCount}</p>
+              </div>
+              {Object.entries(categoryCounts).map(([category, count]) => (
+                <div
+                  key={category}
+                  className='flex items-center justify-between w-full'
+                >
+                  <p className='text-gray-500 font-[600]'>
+                    From {categoryNames[Number(category)]} category:
+                  </p>
+                  <div className='flex-1 border mt-[10px] border-dashed border-gray-400 mx-2'></div>
+                  <p className='font-semibold'> {count}</p>
+                </div>
+              ))}
+            </div>
+            <div className='order-form p-4 shadow-sm rounded-lg'>
+              <h3 className='text-xl font-semibold mb-4'>Place an order</h3>
+              <input
+                type='text'
+                placeholder='Your name'
+                className='border border-gray-300 p-3 mb-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all'
+              />
+              <input
+                type='text'
+                placeholder='Your phone number'
+                className='border border-gray-300 p-3 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all'
+              />
+              <button className='w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-all'>
+                🚀 Place an order
+              </button>
+            </div>
           </div>
         </div>
-      </div>
+      )}
+      <Dialog
+        open={openDialogClearItems}
+        onClose={handleCloseDialog}
+        aria-labelledby='alert-dialog-title'
+        aria-describedby='alert-dialog-description'
+      >
+        <DialogTitle id='alert-dialog-title'>{'Delete all item?'}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id='alert-dialog-description'>
+            Are you sure you want to delete all items from cart?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseDialog}>Disagree</Button>
+          <Button onClick={handleConfirmDelete} autoFocus>
+            Agree
+          </Button>{' '}
+        </DialogActions>
+      </Dialog>
 
       <Dialog
         open={open}

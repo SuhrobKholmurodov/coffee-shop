@@ -19,7 +19,7 @@ const Header = () => {
   )
   return (
     <div className='sm:flex sm:flex-col sm:min-h-screen'>
-      <header className='flex fixed top-0 left-0 right-0 bg-[#E1D4C9] items-center justify-between py-1 px-[3%] shadow-md text-gray-800 z-10'>
+      <header className='flex fixed top-0 left-0 right-0 bg-[#E1D4C9] items-center justify-between py-2 px-[3%] shadow-md text-gray-800 z-10'>
         <Link to={'/'}>
           <img
             className='w-[90px] object-cover h-[50px]'
