@@ -9,7 +9,7 @@ import DialogContentText from '@mui/material/DialogContentText'
 import DialogTitle from '@mui/material/DialogTitle'
 import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearItems, removeItem } from '../redux/cart/slice'
+import { addItem, clearItems, minusItem, removeItem } from '../redux/cart/slice'
 import { selectCart } from '../redux/cart/selectors'
 
 export const Cart = () => {
@@ -58,6 +58,21 @@ export const Cart = () => {
     acc[item.category] = (acc[item.category] || 0) + item.count
     return acc
   }, {} as Record<string, number>)
+
+  const onClickMinus = (id: string, count: number) => {
+    if (count > 1) {
+      dispatch(minusItem(id))
+    }
+  }
+
+  const onClickPlus = (id: string) => {
+    const item = cartItems.items.find(i => i.id.toString() === id.toString())
+    if (item) {
+      dispatch(addItem({ ...item, count: item.count + 1 }))
+    } else {
+      console.error(`Item with id ${id} not found`)
+    }
+  }
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems.items))
@@ -109,11 +124,25 @@ export const Cart = () => {
                   </div>
                   <div className='flex w-[400px] mt-4 sm:w-full items-center justify-between'>
                     <div className='flex gap-2 items-center'>
-                      <button className='p-2 sm:p-1 bg-gray-200 rounded-full hover:bg-gray-300'>
+                      <button
+                        onClick={() =>
+                          onClickMinus(item.id.toString(), item.count)
+                        }
+                        disabled={item.count === 1}
+                        style={{
+                          cursor: item.count === 1 ? 'not-allowed' : 'pointer',
+                          backgroundColor:
+                            item.count == 1 ? '#e6e5e5' : '#c6c5c5'
+                        }}
+                        className='p-2 sm:p-1 rounded-full'
+                      >
                         <Minus />
                       </button>
                       <p className='text-xl text-gray-700'>{item.count}</p>
-                      <button className='p-2 sm:p-1 bg-gray-200 rounded-full hover:bg-gray-300'>
+                      <button
+                        onClick={() => onClickPlus(item.id.toString())}
+                        className='p-2 sm:p-1 bg-[#c6c5c5] rounded-full'
+                      >
                         <Plus />
                       </button>
                     </div>
