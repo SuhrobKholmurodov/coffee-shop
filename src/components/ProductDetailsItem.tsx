@@ -1,10 +1,11 @@
-import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { addItem, minusItem } from '../redux/cart/slice'
+import { selectCartItemById } from '../redux/cart/selectors'
 import { ShowToast } from '../components'
 import { Products } from '../redux/products/types'
 import { ItemCounter } from '../components'
 import { ShoppingBasket } from 'lucide-react'
+import { useState } from 'react'
 
 interface ProductDetailsItemProps {
   product: Products
@@ -12,9 +13,11 @@ interface ProductDetailsItemProps {
 
 export const ProductDetailsItem = ({ product }: ProductDetailsItemProps) => {
   const dispatch = useDispatch()
-  const [count, setCount] = useState(0)
   const [activeFirst, setActiveFirst] = useState(0)
   const [activeSecond, setActiveSecond] = useState(0)
+
+  const cartItem = useSelector(selectCartItemById(Number(product.id)))
+  const count = cartItem?.count || 0
 
   const handleChangeFirst = (index: number) => {
     setActiveFirst(index)
@@ -29,7 +32,7 @@ export const ProductDetailsItem = ({ product }: ProductDetailsItemProps) => {
       id: product.id,
       name: product.name,
       price: product.price,
-      count: count + 1,
+      count: 1,
       category: product.category,
       imageUrl: product.imageUrl,
       options: {
@@ -39,13 +42,11 @@ export const ProductDetailsItem = ({ product }: ProductDetailsItemProps) => {
     }
     dispatch(addItem(item))
     ShowToast({ message: `${product.name} was added to cart!` })
-    setCount(count + 1)
   }
 
   const onClickMinus = () => {
-    if (count <= 1) return
+    if (!cartItem || count <= 1) return
     dispatch(minusItem(product.id.toString()))
-    setCount(count - 1)
   }
 
   return (
