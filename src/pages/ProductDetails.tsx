@@ -8,15 +8,10 @@ import { fetchProducts } from '../redux/products/asyncActions'
 import { Products } from '../redux/products/types'
 import { useAppDispatch } from '../redux/store'
 import { HomeIcon, Minus, Plus, ShoppingBasket } from 'lucide-react'
-import { Star } from '@mui/icons-material'
-import { Rating } from '@mui/material'
-import Accordion from '@mui/material/Accordion'
-import AccordionSummary from '@mui/material/AccordionSummary'
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore'
-import AccordionDetails from '@mui/material/AccordionDetails'
 import { Helmet } from 'react-helmet'
 import { addItem, minusItem } from '../redux/cart/slice'
 import { selectCartItemById } from '../redux/cart/selectors'
+import { Reviews } from '../components'
 
 const categoryNames = ['coffees', 'teas', 'desserts']
 
@@ -104,7 +99,7 @@ const ProductDetails = () => {
         )
           .toFixed(1)
           .replace(/\.0$/, '')
-      : 0
+      : '0'
 
   return (
     <div>
@@ -221,83 +216,7 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
-      <div className='w-full sm:w-auto rounded-lg shadow-lg'>
-        {product.reviews && product.reviews.length > 0 ? (
-          <Accordion defaultExpanded>
-            <AccordionSummary
-              expandIcon={<ExpandMoreIcon />}
-              aria-controls='panel1-content'
-              id='panel1-header'
-            >
-              <div className='flex justify-between w-full'>
-                <h2 className='text-xl sm:text-lg font-semibold text-gray-800 flex items-center'>
-                  Reviews: {product.reviews.length}
-                </h2>
-                <div className='flex text-lg font-semibold text-gray-800 items-center gap-[4px]'>
-                  <p>Average raging:</p>
-                  <Star className='text-[orange]' sx={{ fontSize: '21px' }} />
-                  <p>{averageRating}</p>
-                </div>
-              </div>
-            </AccordionSummary>
-            <AccordionDetails>
-              <div className='divide-y'>
-                {product.reviews.map((review, index) => (
-                  <div key={index} className='py-4'>
-                    <div className='flex justify-between items-start sm:items-center'>
-                      <div className='flex items-center'>
-                        <img
-                          src={review.profilePhoto}
-                          alt={review.name}
-                          className='w-12 h-12 sm:w-10 sm:h-10 rounded-full border mr-4'
-                        />
-                        <div>
-                          <Typography variant='body1' className='font-semibold'>
-                            {review.name}
-                          </Typography>
-                          <Typography variant='body1' className='font-semibold'>
-                            {review.recomendation ? (
-                              <span className='text-green-600'>
-                                Рекомендует
-                              </span>
-                            ) : (
-                              <span className='text-red-600'>
-                                Не рекомендует
-                              </span>
-                            )}
-                          </Typography>
-                        </div>
-                      </div>
-                      <div className='flex flex-col items-end gap-1'>
-                        <Rating size='small' readOnly value={review.rating} />
-                        <Typography
-                          variant='body2'
-                          className='text-gray-500 dark:text-gray-300'
-                        >
-                          {review.date}
-                        </Typography>
-                      </div>
-                    </div>
-                    <Typography
-                      variant='body2'
-                      className='text-gray-600 dark:text-gray-400 pl-16 sm:pl-[55px]'
-                    >
-                      {review.comment}
-                    </Typography>
-                  </div>
-                ))}
-              </div>
-            </AccordionDetails>
-          </Accordion>
-        ) : (
-          <Typography
-            variant='body2'
-            className='text-gray-600 dark:text-gray-400'
-          >
-            Нет отзывов.
-          </Typography>
-        )}
-      </div>
+      <Reviews reviews={product.reviews} averageRating={averageRating} />
     </div>
   )
 }
