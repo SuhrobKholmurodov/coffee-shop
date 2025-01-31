@@ -1,19 +1,16 @@
-import { Minus, Plus, Trash2 } from 'lucide-react'
+import { Trash2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { CartItem } from '../redux/cart/types'
 import { addItem, minusItem } from '../redux/cart/slice'
 import { useDispatch } from 'react-redux'
+import { ItemCounter } from './ItemCounter'
 
 interface CartItemsProps {
   cartItems: CartItem[]
   handleClickOpen: (item: CartItem) => void
 }
 
-export const CartItems = ({
-  cartItems,
-  handleClickOpen
-}: CartItemsProps) => {
-
+export const CartItems = ({ cartItems, handleClickOpen }: CartItemsProps) => {
   const dispatch = useDispatch()
   const onClickMinus = (id: string, count: number) => {
     if (count > 1) {
@@ -68,26 +65,12 @@ export const CartItems = ({
               </div>
             </div>
             <div className='flex w-[400px] mt-4 sm:w-full items-center justify-between'>
-              <div className='flex gap-2 items-center'>
-                <button
-                  onClick={() => onClickMinus(item.id.toString(), item.count)}
-                  disabled={item.count === 1}
-                  style={{
-                    cursor: item.count === 1 ? 'not-allowed' : 'pointer',
-                    backgroundColor: item.count === 1 ? '#e6e5e5' : '#c6c5c5'
-                  }}
-                  className='p-2 sm:p-1 rounded-full'
-                >
-                  <Minus />
-                </button>
-                <p className='text-xl text-gray-700'>{item.count}</p>
-                <button
-                  onClick={() => onClickPlus(item.id.toString())}
-                  className='p-2 sm:p-1 bg-[#c6c5c5] rounded-full'
-                >
-                  <Plus />
-                </button>
-              </div>
+              <ItemCounter
+                count={item.count}
+                onMinus={() => onClickMinus(item.id.toString(), item.count)}
+                onAdd={() => onClickPlus(item.id.toString())}
+                price={item.price}
+              />
               <p className='text-xl sm:pl-2 text-gray-700'>
                 {item.price * item.count}$
               </p>

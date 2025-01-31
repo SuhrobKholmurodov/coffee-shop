@@ -7,11 +7,11 @@ import Breadcrumbs from '@mui/material/Breadcrumbs'
 import { fetchProducts } from '../redux/products/asyncActions'
 import { Products } from '../redux/products/types'
 import { useAppDispatch } from '../redux/store'
-import { HomeIcon, Minus, Plus, ShoppingBasket } from 'lucide-react'
+import { HomeIcon, ShoppingBasket } from 'lucide-react'
 import { Helmet } from 'react-helmet'
 import { addItem, minusItem } from '../redux/cart/slice'
 import { selectCartItemById } from '../redux/cart/selectors'
-import { Reviews } from '../components'
+import { ItemCounter, Reviews } from '../components'
 
 const categoryNames = ['coffees', 'teas', 'desserts']
 
@@ -180,29 +180,12 @@ const ProductDetails = () => {
             </p>
             <div className='flex items-center justify-between gap-12 sm:gap-4 sm:w-full mt-4 sm:mt-2'>
               {count >= 1 && (
-                <div className='flex gap-8 sm:gap-2 items-center'>
-                  <button
-                    onClick={onClickMinus}
-                    disabled={count === 1}
-                    style={{
-                      cursor: count === 1 ? 'not-allowed' : 'pointer',
-                      backgroundColor: count == 1 ? '#e6e5e5' : '#c6c5c5'
-                    }}
-                    className='p-2 sm:p-1 bg-[#c6c5c5] rounded-full'
-                  >
-                    <Minus />
-                  </button>
-                  <p className='text-xl text-gray-700'>{count}</p>
-                  <button
-                    onClick={onClickAdd}
-                    className='p-2 sm:p-1 bg-[#c6c5c5] rounded-full'
-                  >
-                    <Plus />
-                  </button>
-                  <p className='text-xl ml-4 sm:pl-[15px] text-gray-700'>
-                    {product.price * count} $
-                  </p>
-                </div>
+                <ItemCounter
+                  count={count}
+                  onMinus={onClickMinus}
+                  onAdd={onClickAdd}
+                  price={product.price}
+                />
               )}
               <button
                 onClick={onClickAdd}
