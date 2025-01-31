@@ -1,20 +1,29 @@
 import { Trash2 } from 'lucide-react'
+import { CartItem } from '../redux/cart/types'
 
 interface OrderSummaryProps {
-  totalPrice: number
-  totalCount: number
-  categoryCounts: Record<string, number>
+  cartItems: CartItem[]
   categoryNames: string[]
   onDeleteAll: () => void
 }
 
 export const OrderSummary = ({
-  totalPrice,
-  totalCount,
-  categoryCounts,
+  cartItems,
   categoryNames,
   onDeleteAll
 }: OrderSummaryProps) => {
+  const totalPrice = cartItems.reduce(
+    (total, item) => total + item.price * item.count,
+    0
+  )
+
+  const totalCount = cartItems.reduce((total, item) => total + item.count, 0)
+
+  const categoryCounts = cartItems.reduce((acc, item) => {
+    acc[item.category] = (acc[item.category] || 0) + item.count
+    return acc
+  }, {} as Record<string, number>)
+
   return (
     <div className='right bg-gray-100 rounded-lg sm:relative sm:top-4 fixed top-[100px] right-[3%] sm:right-0 flex flex-col sm:p-0 p-4'>
       <div className='flex flex-col gap-[8px] mb-4 rounded-lg p-4 shadow-sm'>

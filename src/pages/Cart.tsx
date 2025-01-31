@@ -37,21 +37,7 @@ export const Cart = () => {
     setOpenDialogClearItems(false)
   }
 
-  const totalPrice = cartItems.items.reduce(
-    (total, item) => total + item.price * item.count,
-    0
-  )
-  const totalCount = cartItems.items.reduce(
-    (total, item) => total + item.count,
-    0
-  )
-
   const categoryNames: string[] = ['coffees', 'teas', 'desserts']
-
-  const categoryCounts = cartItems.items.reduce((acc, item) => {
-    acc[item.category] = (acc[item.category] || 0) + item.count
-    return acc
-  }, {} as Record<string, number>)
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems.items))
@@ -73,9 +59,7 @@ export const Cart = () => {
             }}
           />
           <OrderSummary
-            totalPrice={totalPrice}
-            totalCount={totalCount}
-            categoryCounts={categoryCounts}
+            cartItems={cartItems.items}
             categoryNames={categoryNames}
             onDeleteAll={handleOpenDialog}
           />
