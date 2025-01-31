@@ -1,42 +1,45 @@
-import { Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, Button } from '@mui/material';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Button
+} from '@mui/material'
 
 interface CustomDialogProps {
-  open: boolean;
-  onClose: () => void;
-  onConfirm: () => void;
-  title: string;
-  description: string;
-  confirmButtonText?: string;
-  cancelButtonText?: string;
+  open: boolean
+  onClose: () => void
+  onConfirm: () => void
+  title: string
+  description: string
 }
 export const CustomDialog = ({
   open,
   onClose,
   onConfirm,
   title,
-  description,
-  confirmButtonText = 'Agree',
-  cancelButtonText = 'Disagree',
+  description
 }: CustomDialogProps) => {
   return (
     <Dialog
       open={open}
       onClose={onClose}
-      aria-labelledby="alert-dialog-title"
-      aria-describedby="alert-dialog-description"
+      aria-labelledby='alert-dialog-title'
+      aria-describedby='alert-dialog-description'
     >
-      <DialogTitle id="alert-dialog-title">{title}</DialogTitle>
+      <DialogTitle id='alert-dialog-title'>{title}</DialogTitle>
       <DialogContent>
-        <DialogContentText id="alert-dialog-description">
+        <DialogContentText id='alert-dialog-description'>
           {description}
         </DialogContentText>
       </DialogContent>
       <DialogActions>
-        <Button onClick={onClose}>{cancelButtonText}</Button>
+        <Button onClick={onClose}>Disagree</Button>
         <Button onClick={onConfirm} autoFocus>
-          {confirmButtonText}
+          Agree
         </Button>
       </DialogActions>
     </Dialog>
-  );
-};
+  )
+}

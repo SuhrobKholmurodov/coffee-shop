@@ -18,7 +18,6 @@ export const OrderSummary = ({
   )
 
   const totalCount = cartItems.reduce((total, item) => total + item.count, 0)
-
   const categoryCounts = cartItems.reduce((acc, item) => {
     acc[item.category] = (acc[item.category] || 0) + item.count
     return acc
