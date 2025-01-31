@@ -58,6 +58,10 @@ export const Cart = () => {
     localStorage.setItem('cart', JSON.stringify(cartItems.items))
   }, [cartItems.items])
 
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
   return (
     <div>
       <Helmet>
