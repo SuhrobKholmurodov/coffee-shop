@@ -7,7 +7,7 @@ export const Skeleton = () => (
       viewBox='0 0 300 400'
       backgroundColor='currentColor'
       foregroundColor='currentColor'
-      className='text-gray-100 w-[300px] h-[400px] sm:w-[150] sm:h-[200]'
+      className='text-gray-100 w-[310px] h-[400px] sm:w-[150] sm:h-[200]'
     >
       <rect x='0' y='20' rx='10' ry='10' width='300' height='150' />
       <rect x='0' y='190' rx='10' ry='10' width='300' height='23' />

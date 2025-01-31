@@ -1,5 +1,7 @@
 import { Trash2 } from 'lucide-react'
 import { CartItem } from '../redux/cart/types'
+import { useState } from 'react'
+import { ShowToast } from './ShowToast'
 
 interface OrderSummaryProps {
   cartItems: CartItem[]
@@ -22,6 +24,19 @@ export const OrderSummary = ({
     acc[item.category] = (acc[item.category] || 0) + item.count
     return acc
   }, {} as Record<string, number>)
+
+  const [name, setName] = useState('')
+  const [phone, setPhone] = useState('')
+
+  const handlePlaceOrder = () => {
+    if (name.trim() !== '' && phone.trim() !== '') {
+      ShowToast({ message: 'Order placed successfully!', type: 'success' })
+      setName('')
+      setPhone('')
+    } else {
+      ShowToast({ message: 'Please fill in all fields!', type: 'error' })
+    }
+  }
 
   return (
     <div className='right bg-gray-100 rounded-lg sm:relative sm:top-4 fixed top-[100px] right-[3%] sm:right-0 flex flex-col sm:p-0 p-4'>
@@ -66,14 +81,21 @@ export const OrderSummary = ({
         <input
           type='text'
           placeholder='Your name'
-          className='border border-gray-300 p-3 mb-3 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all'
+          value={name}
+          onChange={e => setName(e.target.value)}
+          className='border border-gray-300 p-3 mb-3 w-full rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all'
         />
         <input
           type='text'
           placeholder='Your phone number'
-          className='border border-gray-300 p-3 mb-4 w-full rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all'
+          value={phone}
+          onChange={e => setPhone(e.target.value)}
+          className='border border-gray-300 p-3 mb-4 w-full rounded-lg focus:outline-none focus:ring-1 focus:ring-blue-500 transition-all'
         />
-        <button className='w-full bg-blue-600 text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-all'>
+        <button
+          onClick={handlePlaceOrder}
+          className='w-full bg-blue-600 focus:outline-none text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-all'
+        >
           🚀 Place an order
         </button>
       </div>
