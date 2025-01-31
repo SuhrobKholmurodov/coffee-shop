@@ -82,7 +82,15 @@ export const Cart = () => {
           handleClose()
         }}
         title='Delete item?'
-        description={`Are you sure you want to delete ${selectedItem?.name}?`}
+        description={
+          <>
+            Вы уверены, что хотите удалить{' '}
+            <span style={{ color: '#B0907A', fontWeight: 'bold' }}>
+              {selectedItem?.name}
+            </span>
+            ?
+          </>
+        }
       />
     </div>
   )

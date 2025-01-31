@@ -12,7 +12,7 @@ interface CustomDialogProps {
   onClose: () => void
   onConfirm: () => void
   title: string
-  description: string
+  description: React.ReactNode
 }
 export const CustomDialog = ({
   open,
