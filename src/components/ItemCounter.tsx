@@ -26,12 +26,12 @@ export const ItemCounter = ({
       >
         <Minus />
       </button>
-      <p className='text-xl text-gray-700'>{count}</p>
+      <p className='text-xl sm:text-lg text-gray-700'>{count}</p>
       <button onClick={onAdd} className='p-2 sm:p-1 bg-[#c6c5c5] rounded-full'>
         <Plus />
       </button>
       {price !== undefined && (
-        <p className='text-xl sm:pl-2 pl-8 text-gray-700'>
+        <p className='text-xl sm:pl-0 sm:text-lg pl-8 text-gray-700'>
           {price * count}$
         </p>
       )}

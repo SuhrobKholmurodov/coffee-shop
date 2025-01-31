@@ -11,7 +11,7 @@ import { HomeIcon, ShoppingBasket } from 'lucide-react'
 import { Helmet } from 'react-helmet'
 import { addItem, minusItem } from '../redux/cart/slice'
 import { selectCartItemById } from '../redux/cart/selectors'
-import { ItemCounter, Reviews } from '../components'
+import { ItemCounter, Reviews, ShowToast } from '../components'
 
 const categoryNames = ['coffees', 'teas', 'desserts']
 
@@ -83,6 +83,7 @@ const ProductDetails = () => {
       }
     }
     dispatch(addItem(item))
+    ShowToast({ message: `${product?.name} was added to cart!` })
     setCount(count + 1)
   }
   const onClickMinus = () => {

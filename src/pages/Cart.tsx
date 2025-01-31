@@ -4,7 +4,13 @@ import { CartItem } from '../redux/cart/types'
 import { useDispatch, useSelector } from 'react-redux'
 import { clearItems, removeItem } from '../redux/cart/slice'
 import { selectCart } from '../redux/cart/selectors'
-import { CartItems, CustomDialog, EmptyCart, OrderSummary } from '../components'
+import {
+  CartItems,
+  CustomDialog,
+  EmptyCart,
+  OrderSummary,
+  ShowToast
+} from '../components'
 
 export const Cart = () => {
   const [open, setOpen] = useState(false)
@@ -34,6 +40,7 @@ export const Cart = () => {
 
   const handleConfirmDelete = () => {
     dispatch(clearItems())
+    ShowToast({ message: "All items were deleted!" })
     setOpenDialogClearItems(false)
   }
 
@@ -79,6 +86,7 @@ export const Cart = () => {
           if (selectedItem?.id !== undefined) {
             dispatch(removeItem(selectedItem.id.toString()))
           }
+          ShowToast({ message: `${selectedItem?.name} deleted` })
           handleClose()
         }}
         title='Delete item?'

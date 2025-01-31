@@ -6,6 +6,7 @@ import { selectCart } from '../redux/cart/selectors'
 import { CartItem } from '../redux/cart/types'
 import { addItem } from '../redux/cart/slice'
 import { useEffect, useRef } from 'react'
+import { ShowToast } from './ShowToast'
 
 interface Product {
   id: number
@@ -66,6 +67,7 @@ export const ProductDialog = ({
       }
     }
     dispatch(addItem(item))
+    ShowToast({ message: `${item?.name} was added to cart!` })
   }
 
   return (
