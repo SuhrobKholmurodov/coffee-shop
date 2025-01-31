@@ -3,6 +3,7 @@ import './App.css'
 import Layouts from './layouts/Layouts'
 import { About, Cart, Contacts, Home, NotFound } from './pages'
 import { lazy, Suspense } from 'react'
+import 'animate.css';
 
 const ProductDetails = lazy(() => import('./pages/ProductDetails'))
 

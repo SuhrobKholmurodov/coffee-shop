@@ -12,7 +12,7 @@ export default {
     extend: {
       colors: {
         mainBgColor: '#E1D4C9',
-        secondareBgColor: "#665F55"
+        secondareBgColor: '#665F55'
       }
     }
   },
