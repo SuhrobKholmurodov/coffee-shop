@@ -54,7 +54,7 @@ export const Cart = () => {
     0
   )
 
-  const categoryNames: string[] = ['Coffees', 'Teas', 'Desserts']
+  const categoryNames: string[] = ['coffees', 'teas', 'desserts']
 
   const categoryCounts = cartItems.items.reduce((acc, item) => {
     acc[item.category] = (acc[item.category] || 0) + item.count
