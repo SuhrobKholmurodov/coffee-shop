@@ -40,8 +40,16 @@ export const Cart = () => {
 
   const handleConfirmDelete = () => {
     dispatch(clearItems())
-    ShowToast({ message: "All items were deleted!" })
+    ShowToast({ message: 'All items were deleted!' })
     setOpenDialogClearItems(false)
+  }
+
+  const handleDeleteItem = () => {
+    if (selectedItem?.id !== undefined) {
+      dispatch(removeItem(selectedItem.id.toString()))
+      ShowToast({ message: `${selectedItem.name} deleted` })
+    }
+    handleClose()
   }
 
   const categoryNames: string[] = ['coffees', 'teas', 'desserts']
@@ -82,13 +90,7 @@ export const Cart = () => {
       <CustomDialog
         open={open}
         onClose={handleClose}
-        onConfirm={() => {
-          if (selectedItem?.id !== undefined) {
-            dispatch(removeItem(selectedItem.id.toString()))
-          }
-          ShowToast({ message: `${selectedItem?.name} deleted` })
-          handleClose()
-        }}
+        onConfirm={handleDeleteItem}
         title='Delete item?'
         description={
           <>
