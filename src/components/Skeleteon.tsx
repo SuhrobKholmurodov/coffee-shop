@@ -1,19 +1,23 @@
 import ContentLoader from 'react-content-loader'
 
 export const Skeleton = () => (
-  <div className='border grid grid-cols-4 sm:grid-cols-2 p-4 rounded-2xl border-secondareBgColor h-[420px]'>
+  <div className='border rounded-2xl shadow-lg sm:mb-[14px] h-[420px] border-secondareBgColor '>
     <ContentLoader
       speed={2}
-      viewBox='0 0 300 400'
+      viewBox='0 0 360 460'
       backgroundColor='currentColor'
       foregroundColor='currentColor'
-      className='text-gray-100 w-[310px] h-[400px] sm:w-[150] sm:h-[200]'
+      className='text-gray-100 w-[350px] sm:w-full h-[420px]'
     >
-      <rect x='0' y='20' rx='10' ry='10' width='300' height='150' />
-      <rect x='0' y='190' rx='10' ry='10' width='300' height='23' />
-      <rect x='0' y='220' rx='10' ry='10' width='300' height='80' />
-      <rect x='0' y='310' rx='10' ry='10' width='300' height='30' />
-      <rect x='0' y='350' rx='10' ry='10' width='300' height='40' />
+      <circle cx='180' cy='106' r='80' />
+      <rect x='0' y='220' rx='5' ry='5' width='180' height='20' />
+      <rect x='0' y='250' rx='5' ry='5' width='350' height='20' />
+      <rect x='0' y='265' rx='5' ry='5' width='150' height='30' />
+      <rect x='0' y='340' rx='5' ry='5' width='50' height='20' />
+      <rect x='0' y='370' rx='5' ry='5' width='110' height='20' />
+      <rect x='315' y='370' rx='5' ry='5' width='40' height='20' />
+      <rect x='0' y='400' rx='16' ry='16' width='175' height='40' />
+      <rect x='180' y='400' rx='16' ry='16' width='175' height='40' />
     </ContentLoader>
   </div>
 )

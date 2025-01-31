@@ -27,17 +27,17 @@ const Header = () => {
           <ul className='flex space-x-12'>
             <li>
               <NavLink to='/' className='hover:text-[#665F55]'>
-                Главная
+                Home
               </NavLink>
             </li>
             <li>
               <NavLink to='/contacts' className='hover:text-[#665F55]'>
-                Контакты
+                Contacts
               </NavLink>
             </li>
             <li>
               <NavLink to='/about' className='hover:text-[#665F55]'>
-                О нас
+                About
               </NavLink>
             </li>
           </ul>

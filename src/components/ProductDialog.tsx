@@ -87,7 +87,7 @@ export const ProductDialog = ({
         </button>
         <div className='flex sm:items-center gap-6'>
           <img
-            className='w-40 h-40 object-cover rounded-lg'
+            className='w-40 h-40 sm:w-[140px] sm:h-[140px] object-cover rounded-lg'
             src={product.imageUrl}
             alt={product.name}
           />
@@ -97,7 +97,7 @@ export const ProductDialog = ({
               to={`/${categoryNames[product.category]}/${product.id}`}
               className='text-gray-600 dark:text-gray-400 text-sm flex-grow overflow-hidden text-ellipsis'
             >
-              {product.description.split(' ').slice(0, 12).join(' ')}
+              {product.description.split(' ').slice(0, 10).join(' ')}
               {product.description.split(' ').length > 20 && (
                 <span className='text-blue-500 cursor-pointer'>...more</span>
               )}
@@ -122,7 +122,7 @@ export const ProductDialog = ({
                       rounded-[100px] h-11 pl-4 pr-6 sm:px-[15px] hover:cursor-pointer`}
                 onClick={() => onChangeFirst(index)}
               >
-                <p className='font-[600] text-[16px]'>{el}</p>
+                <p className='font-[600] sm:font-[500] text-[16px] sm:text-[14px]'>{el}</p>
               </div>
             ))}
           </div>
@@ -143,7 +143,7 @@ export const ProductDialog = ({
                       rounded-[100px] h-11 pl-4 pr-6 sm:px-[15px] hover:cursor-pointer`}
                 onClick={() => onChangeSecond(index)}
               >
-                <p className='font-[600] text-[16px]'>{el}</p>
+                <p className='font-[600] sm:font-[500] text-[16px] sm:text-[14px]'>{el}</p>
               </div>
             ))}
           </div>
