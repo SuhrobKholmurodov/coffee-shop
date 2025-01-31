@@ -28,7 +28,7 @@ export const Home = () => {
       <div>
         <p
           style={{ lineHeight: '125%' }}
-          className='text-[40px] sm:text-[23px] pb-[3%] font-[600] text-center'
+          className='text-[40px] animate__animated animate__zoomInDown sm:text-[23px] pb-[1%] font-[600] text-center'
         >
           Behind each of our cups hides an{' '}
           <span className='text-[#B0907A] leading-[1px] italic'>
