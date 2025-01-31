@@ -1,8 +1,8 @@
-import { Eye, MessageCircle, ShoppingBasket, X } from 'lucide-react'
+import { Eye, ShoppingBasket, X } from 'lucide-react'
 import { Reviews } from '../redux/products/types'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectCart} from '../redux/cart/selectors'
+import { selectCart } from '../redux/cart/selectors'
 import { CartItem } from '../redux/cart/types'
 import { addItem } from '../redux/cart/slice'
 import { useEffect, useRef } from 'react'
@@ -103,15 +103,6 @@ export const ProductDialog = ({
             <p className='text-lg font-bold text-gray-800 mt-2'>
               ${product.price}
             </p>
-            <Link
-              to={`/${categoryNames[product.category]}/${product.id}`}
-              className='flex items-center gap-[5px] mt-[10px]'
-            >
-              <MessageCircle />
-              <span className='text-sm font-semibold'>
-                Reviews: {product.reviews.length}
-              </span>{' '}
-            </Link>
           </div>
         </div>
         <div className='mt-4'>
