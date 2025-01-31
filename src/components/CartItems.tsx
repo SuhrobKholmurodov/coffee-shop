@@ -16,6 +16,7 @@ export const CartItems = ({
   handleClickOpen
 }: CartItemsProps) => {
   const categoryNames: string[] = ['coffees', 'teas', 'desserts']
+  
 
   return (
     <div className='left mb-[-35px] sm:mb-[-23px]'>
