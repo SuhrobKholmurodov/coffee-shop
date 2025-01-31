@@ -31,8 +31,8 @@ export const ItemCounter = ({
         <Plus />
       </button>
       {price !== undefined && (
-        <p className='text-xl ml-4 sm:pl-[15px] text-gray-700'>
-          {price * count} $
+        <p className='text-xl sm:pl-2 pl-8 text-gray-700'>
+          {price * count}$
         </p>
       )}
     </div>

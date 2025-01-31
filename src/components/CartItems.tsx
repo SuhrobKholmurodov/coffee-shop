@@ -71,9 +71,6 @@ export const CartItems = ({ cartItems, handleClickOpen }: CartItemsProps) => {
                 onAdd={() => onClickPlus(item.id.toString())}
                 price={item.price}
               />
-              <p className='text-xl sm:pl-2 text-gray-700'>
-                {item.price * item.count}$
-              </p>
               <button
                 onClick={() => handleClickOpen(item)}
                 className='p-2 text-red-800 rounded-md flex items-center space-x-2'
