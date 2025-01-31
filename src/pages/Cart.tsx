@@ -2,17 +2,11 @@ import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { CartItem } from '../redux/cart/types'
 import { Minus, Plus, Trash2 } from 'lucide-react'
-import Dialog from '@mui/material/Dialog'
-import DialogActions from '@mui/material/DialogActions'
-import DialogContent from '@mui/material/DialogContent'
-import DialogContentText from '@mui/material/DialogContentText'
-import DialogTitle from '@mui/material/DialogTitle'
-import { Button } from '@mui/material'
 import { useDispatch, useSelector } from 'react-redux'
 import { addItem, clearItems, minusItem, removeItem } from '../redux/cart/slice'
 import { selectCart } from '../redux/cart/selectors'
 import { Link } from 'react-router-dom'
-import { EmptyCart } from '../components'
+import { CustomDialog, EmptyCart } from '../components'
 
 export const Cart = () => {
   const [open, setOpen] = useState(false)
@@ -222,54 +216,25 @@ export const Cart = () => {
           </div>
         </div>
       )}
-      <Dialog
+      <CustomDialog
         open={openDialogClearItems}
         onClose={handleCloseDialog}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
-        <DialogTitle id='alert-dialog-title'>{'Delete all item?'}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id='alert-dialog-description'>
-            Are you sure you want to delete all items from cart?
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseDialog}>Disagree</Button>
-          <Button onClick={handleConfirmDelete} autoFocus>
-            Agree
-          </Button>{' '}
-        </DialogActions>
-      </Dialog>
-
-      <Dialog
+        onConfirm={handleConfirmDelete}
+        title='Delete all items?'
+        description='Are you sure you want to delete all items from the cart?'
+      />
+      <CustomDialog
         open={open}
         onClose={handleClose}
-        aria-labelledby='alert-dialog-title'
-        aria-describedby='alert-dialog-description'
-      >
-        <DialogTitle id='alert-dialog-title'>{'Delete item?'}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id='alert-dialog-description'>
-            Are you sure you want to delete
-            <span className='text-green-700'> {selectedItem?.name}?</span>
-          </DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={handleClose}>Disagree</Button>
-          <Button
-            onClick={() => {
-              if (selectedItem?.id !== undefined) {
-                dispatch(removeItem(selectedItem.id.toString()))
-              }
-              handleClose()
-            }}
-            autoFocus
-          >
-            Agree
-          </Button>{' '}
-        </DialogActions>
-      </Dialog>
+        onConfirm={() => {
+          if (selectedItem?.id !== undefined) {
+            dispatch(removeItem(selectedItem.id.toString()))
+          }
+          handleClose()
+        }}
+        title='Delete item?'
+        description={`Are you sure you want to delete ${selectedItem?.name}?`}
+      />
     </div>
   )
 }

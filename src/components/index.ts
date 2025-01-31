@@ -1,4 +1,5 @@
 export * from './CategoryFilter'
+export * from './CustomDialog'
 export * from './EmptyCart'
 export * from './Header'
 export * from './ProductDialog'
