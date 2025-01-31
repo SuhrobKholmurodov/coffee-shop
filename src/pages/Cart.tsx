@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
 import { CartItem } from '../redux/cart/types'
 import { useDispatch, useSelector } from 'react-redux'
-import { addItem, clearItems, minusItem, removeItem } from '../redux/cart/slice'
+import { clearItems, removeItem } from '../redux/cart/slice'
 import { selectCart } from '../redux/cart/selectors'
 import { CartItems, CustomDialog, EmptyCart, OrderSummary } from '../components'
 
@@ -53,21 +53,6 @@ export const Cart = () => {
     return acc
   }, {} as Record<string, number>)
 
-  const onClickMinus = (id: string, count: number) => {
-    if (count > 1) {
-      dispatch(minusItem(id))
-    }
-  }
-
-  const onClickPlus = (id: string) => {
-    const item = cartItems.items.find(i => i.id.toString() === id.toString())
-    if (item) {
-      dispatch(addItem({ ...item, count: item.count + 1 }))
-    } else {
-      console.error(`Item with id ${id} not found`)
-    }
-  }
-
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems.items))
   }, [cartItems.items])
@@ -83,9 +68,9 @@ export const Cart = () => {
         <div className='grid grid-cols-2 sm:grid-cols-1'>
           <CartItems
             cartItems={cartItems.items}
-            onClickMinus={onClickMinus}
-            onClickPlus={onClickPlus}
-            handleClickOpen={handleClickOpen}
+            handleClickOpen={item => {
+              handleClickOpen(item)
+            }}
           />
           <OrderSummary
             totalPrice={totalPrice}

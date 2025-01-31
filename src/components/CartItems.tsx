@@ -1,22 +1,33 @@
 import { Minus, Plus, Trash2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { CartItem } from '../redux/cart/types'
+import { addItem, minusItem } from '../redux/cart/slice'
+import { useDispatch } from 'react-redux'
 
 interface CartItemsProps {
   cartItems: CartItem[]
-  onClickMinus: (id: string, count: number) => void
-  onClickPlus: (id: string) => void
   handleClickOpen: (item: CartItem) => void
 }
 
 export const CartItems = ({
   cartItems,
-  onClickMinus,
-  onClickPlus,
   handleClickOpen
 }: CartItemsProps) => {
+
+  const dispatch = useDispatch()
+  const onClickMinus = (id: string, count: number) => {
+    if (count > 1) {
+      dispatch(minusItem(id))
+    }
+  }
+
+  const onClickPlus = (id: string) => {
+    const item = cartItems.find(i => i.id.toString() === id.toString())
+    if (item) {
+      dispatch(addItem({ ...item, count: item.count + 1 }))
+    }
+  }
   const categoryNames: string[] = ['coffees', 'teas', 'desserts']
-  
 
   return (
     <div className='left mb-[-35px] sm:mb-[-23px]'>
