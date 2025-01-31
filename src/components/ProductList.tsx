@@ -4,6 +4,7 @@ import { selectProduct } from '../redux/products/selectors'
 import { fetchProducts } from '../redux/products/asyncActions'
 import { useAppDispatch } from '../redux/store'
 import { Eye, MessageCircle, ShoppingCart } from 'lucide-react'
+import { Star } from '@mui/icons-material'
 import { Products } from '../redux/products/types'
 import { Skeleton } from './Skeleteon'
 import { ProductDialog } from './ProductDialog'
@@ -55,6 +56,15 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
     )
   }
 
+  const calculateAverageRating = (
+    reviews: { rating: number }[]
+  ): number | string => {
+    if (reviews.length === 0) return 0
+    const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0)
+    const average = totalRating / reviews.length
+    return average.toFixed(1).replace(/\.0$/, '')
+  }
+
   return (
     <div className='grid grid-cols-4 sm:grid-cols-1 gap-6'>
       {filteredItems.map(el => (
@@ -83,20 +93,26 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
               </Link>
             )}
           </p>
-          <div className='flex mb-2 items-end justify-between'>
-            <div className='flex flex-col'>
-              <p className='font-bold text-gray-800 dark:text-white text-lg mt-2'>
-                ${el.price}
-              </p>
+
+          <div className='flex flex-col mb-2 justify-between'>
+            <p className='font-bold text-gray-800 dark:text-white text-lg mt-2'>
+              ${el.price}
+            </p>
+            <div className='flex items-center justify-between'>
               <Link
                 to={`/${categoryNames[el.category]}/${el.id}`}
-                className='flex items-center gap-[5px] text-gray-600 font-[700]'
+                className='flex items-center text-gray-600 gap-[5px] font-[700]'
               >
                 <MessageCircle />
                 <p>{el.reviews.length}</p> reviews
               </Link>
+              <div className='flex items-center text-gray-600 gap-[3px] font-[700]'>
+                <Star className='text-[orange]' sx={{ fontSize: '21px' }} />
+                <p>{calculateAverageRating(el.reviews)}</p>
+              </div>
             </div>
           </div>
+
           <div className='grid grid-cols-2 gap-2'>
             <Link
               to={`/${categoryNames[el.category]}/${el.id}`}

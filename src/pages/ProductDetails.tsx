@@ -8,6 +8,7 @@ import { fetchProducts } from '../redux/products/asyncActions'
 import { Products } from '../redux/products/types'
 import { useAppDispatch } from '../redux/store'
 import { HomeIcon, Minus, Plus, ShoppingBasket } from 'lucide-react'
+import { Star } from '@mui/icons-material'
 import { Rating } from '@mui/material'
 import Accordion from '@mui/material/Accordion'
 import AccordionSummary from '@mui/material/AccordionSummary'
@@ -95,6 +96,15 @@ const ProductDetails = () => {
       setCount(count - 1)
     }
   }
+  const averageRating =
+    product.reviews.length > 0
+      ? (
+          product.reviews.reduce((acc, review) => acc + review.rating, 0) /
+          product.reviews.length
+        )
+          .toFixed(1)
+          .replace(/\.0$/, '')
+      : 0
 
   return (
     <div>
@@ -219,9 +229,16 @@ const ProductDetails = () => {
               aria-controls='panel1-content'
               id='panel1-header'
             >
-              <h2 className='text-xl font-semibold text-gray-800 dark:text-white flex items-center'>
-                Отзывы: {product.reviews.length}
-              </h2>
+              <div className='flex justify-between w-full'>
+                <h2 className='text-xl sm:text-lg font-semibold text-gray-800 flex items-center'>
+                  Reviews: {product.reviews.length}
+                </h2>
+                <div className='flex text-lg font-semibold text-gray-800 items-center gap-[4px]'>
+                  <p>Average raging:</p>
+                  <Star className='text-[orange]' sx={{ fontSize: '21px' }} />
+                  <p>{averageRating}</p>
+                </div>
+              </div>
             </AccordionSummary>
             <AccordionDetails>
               <div className='divide-y'>
