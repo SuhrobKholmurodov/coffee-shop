@@ -40,7 +40,7 @@ export const OrderSummary = ({
 
   return (
     <div className='right bg-gray-100 rounded-lg sm:relative sm:top-4 fixed top-[100px] right-[3%] sm:right-0 flex flex-col sm:p-0 p-4'>
-      <div className='flex flex-col gap-[8px] mb-4 rounded-lg p-4 shadow-sm'>
+      <div id='totalInfo' className='flex flex-col gap-[8px] mb-4 rounded-lg p-4 shadow-sm'>
         <div className='flex items-center mb-[15px] justify-between'>
           <h3 className='text-lg font-bold'>Order summary</h3>
           <div
@@ -76,7 +76,7 @@ export const OrderSummary = ({
           </div>
         ))}
       </div>
-      <div className='order-form p-4 shadow-sm rounded-lg'>
+      <div id='OrderForm' className='order-form p-4 shadow-sm rounded-lg'>
         <h3 className='text-xl font-semibold mb-4'>Place an order</h3>
         <input
           type='text'

@@ -47,7 +47,7 @@ export const Cart = () => {
   const handleDeleteItem = () => {
     if (selectedItem?.id !== undefined) {
       dispatch(removeItem(selectedItem.id.toString()))
-      ShowToast({ message: `${selectedItem.name} deleted` })
+      ShowToast({ message: `${selectedItem.name} was deleted` })
     }
     handleClose()
   }
