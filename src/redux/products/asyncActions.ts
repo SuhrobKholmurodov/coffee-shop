@@ -1,4 +1,4 @@
-const apiUrl = 'https://6799399abe2191d708b25f19.mockapi.io/data'
+const apiUrl = import.meta.env.VITE_API_URL
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import axios from 'axios'
 import { Products, SearchProductsParams } from './types'

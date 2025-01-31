@@ -55,7 +55,7 @@ export const CartItems = ({ cartItems, handleClickOpen }: CartItemsProps) => {
                 </h3>
               </div>
               <div className='flex sm:flex-wrap-reverse sm:mt-2 mt-3 sm:gap-3 items-center gap-[20px]'>
-                <p className='sm:hidden'>Options:</p>
+                <p className='sm:hidden text-xl'>Options:</p>
                 <p className='px-3 py-[3px] sm:px-2 sm:py-1 text-white rounded-full bg-gray-600'>
                   {item.options.first}
                 </p>
