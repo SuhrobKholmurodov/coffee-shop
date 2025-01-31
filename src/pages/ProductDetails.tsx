@@ -9,7 +9,7 @@ import { Products } from '../redux/products/types'
 import { useAppDispatch } from '../redux/store'
 import { HomeIcon } from 'lucide-react'
 import { Helmet } from 'react-helmet'
-import { ProductDetailsItem, Reviews } from '../components'
+import { LoadingSpinner, ProductDetailsItem, Reviews } from '../components'
 
 const categoryNames = ['coffees', 'teas', 'desserts']
 
@@ -46,7 +46,11 @@ const ProductDetails = () => {
   }, [])
 
   if (status === 'loading' || !items.length) {
-    return <div className='text-center'>Загрузка...</div>
+    return (
+      <div className='text-center'>
+        <LoadingSpinner />
+      </div>
+    )
   }
 
   if (!product) {
