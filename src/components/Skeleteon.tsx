@@ -3,7 +3,7 @@ import ContentLoader from 'react-content-loader'
 export const Skeleton = () => (
   <div className='relative rounded-2xl overflow-hidden shadow-lg sm:mb-[14px] h-[420px]'>
     <div className='absolute inset-0 bg-gradient-to-r from-transparent via-gray-300 to-transparent' />
-    <div className='relative z-10 border border-[#eaeced] rounded-2xl h-full'>
+    <div className='relative border border-[#eaeced] rounded-2xl h-full'>
       <ContentLoader
         speed={1}
         viewBox='0 0 360 460'

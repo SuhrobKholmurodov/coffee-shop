@@ -70,7 +70,7 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
       {filteredItems.map(el => (
         <div
           key={el.id}
-          className='border border-secondareBgColor p-3 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-[420px]'
+          className='border border-secondareBgColor p-3 sm:p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-[420px]'
         >
           <div className='flex justify-center mb-3'>
             <img
