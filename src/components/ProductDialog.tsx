@@ -223,13 +223,13 @@ export const ProductDialog = ({
           onConfirm={handleDeleteItem}
           title='Delete item?'
           description={
-            <>
-              Вы уверены, что хотите удалить{' '}
+            <div className='flex items-center gap-[5px] flex-wrap'>
+              <p> Are you sure you want to delete </p>
               <span style={{ color: '#B0907A', fontWeight: 'bold' }}>
                 {selectedItem?.name}
               </span>
-              ?
-            </>
+              <p>from the cart ?</p>
+            </div>
           }
         />
       </div>
