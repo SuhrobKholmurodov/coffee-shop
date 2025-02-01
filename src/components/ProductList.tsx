@@ -9,6 +9,7 @@ import { Products } from '../redux/products/types'
 import { Skeleton } from './Skeleteon'
 import { ProductDialog } from './ProductDialog'
 import { Link } from 'react-router-dom'
+import { selectSearchValue } from '../redux/filter/selectors'
 
 interface ProductListProps {
   categoryId: number
@@ -22,6 +23,7 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
   const [selectedProduct, setSelectedProduct] = useState<null | Products>(null)
   const [activeFirst, setactiveFirst] = useState(0)
   const [activeSecond, setactiveSecond] = useState(0)
+  const searchValue = useSelector(selectSearchValue)
 
   const categories = useMemo(() => [0, 1, 2], [])
 
@@ -31,10 +33,10 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
         sortBy: 'name',
         order: 'asc',
         category: categoryId,
-        search: ''
+        search: searchValue
       })
     )
-  }, [categories, dispatch, categoryId])
+  }, [categories, dispatch, categoryId, searchValue])
 
   const filteredItems = items.filter(
     item => item.category === categories[categoryId]

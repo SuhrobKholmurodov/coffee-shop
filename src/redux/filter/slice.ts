@@ -1,18 +1,22 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const initialState: { categoryId: number } = {
+const initialState = {
+  searchValue: '',
   categoryId: 0
 }
 
 const filterSlice = createSlice({
-  name: 'filters', 
+  name: 'filters',
   initialState,
   reducers: {
     setCategoryId (state, action: PayloadAction<number>) {
       state.categoryId = action.payload
+    },
+    setSearchValue (state, action: PayloadAction<string>) {
+      state.searchValue = action.payload
     }
   }
 })
 
-export const { setCategoryId } = filterSlice.actions
+export const { setCategoryId, setSearchValue } = filterSlice.actions
 export default filterSlice.reducer
