@@ -30,9 +30,9 @@ export const OrderTotalInfo = ({
         <h3 className='text-lg font-bold'>Order summary</h3>
         <div
           onClick={onDeleteAll}
-          className='flex font-[600] hover:cursor-pointer text-red-500 items-center gap-2'
+          className='flex hover:text-red-600 font-[600] hover:cursor-pointer text-red-500 items-center gap-2'
         >
-          <p>Delete all the cart</p>
+          <p>Delete all items</p>
           <Trash2 />
         </div>
       </div>

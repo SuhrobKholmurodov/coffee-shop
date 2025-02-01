@@ -46,7 +46,7 @@ export const OrderForm = () => {
         type='text'
         placeholder='Your name'
         {...register('name')}
-        className={`border w-[100%] border-gray-300 p-3 mb-2 rounded-lg focus:outline-none focus:ring-1 ${
+        className={`border w-[100%] text-gray-500 border-gray-300 p-3 mb-2 rounded-lg focus:outline-none focus:ring-1 ${
           errors.name
             ? 'border-red-500 focus:ring-red-500'
             : 'focus:ring-blue-500'
@@ -58,16 +58,20 @@ export const OrderForm = () => {
         </p>
       )}
 
-      <input
-        type='number'
-        placeholder='Your phone number'
-        {...register('phone')}
-        className={`border w-[100%] border-gray-300 p-3 mb-2 rounded-lg focus:outline-none focus:ring-1 ${
-          errors.phone
-            ? 'border-red-500 focus:ring-red-500'
-            : 'focus:ring-blue-500'
-        } transition-all`}
-      />
+      <div
+        className={`flex bg-white items-center p-3 mb-2 border border-gray-300 rounded-lg transition-all ${
+          errors.phone ? 'border-red-500' : 'border-gray-300'
+        }`}
+      >
+        <span className='pr-2 text-gray-500 border-r border-gray-300'>+992</span>
+        <input
+          type='number'
+          placeholder='Your phone number'
+          {...register('phone')}
+          pattern='\d*'
+          className={`w-full p-0 text-gray-500 pl-2 border-none focus:outline-none focus:ring-0`}
+        />
+      </div>
       {errors.phone && (
         <p className='text-red-500 text-sm mb-2 w-full break-words'>
           {errors.phone.message}
