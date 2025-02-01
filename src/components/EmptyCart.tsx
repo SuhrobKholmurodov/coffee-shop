@@ -3,7 +3,7 @@ import { ShoppingCart } from 'lucide-react'
 
 export const EmptyCart = () => {
   return (
-    <div className='flex flex-col items-center justify-center h-[80vh] text-gray-700'>
+    <div className='flex flex-col items-center justify-center h-[70vh] text-gray-700'>
       <div className='flex items-center justify-center w-24 h-24 bg-white rounded-full shadow-lg mb-8 animate__animated animate__bounceIn'>
         <ShoppingCart size={64} className='text-gray-500' />
       </div>

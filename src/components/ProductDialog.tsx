@@ -1,10 +1,10 @@
-import { Eye, ShoppingBasket, X } from 'lucide-react'
+import { Eye, Minus, ShoppingBasket, X } from 'lucide-react'
 import { Reviews } from '../redux/products/types'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectCart } from '../redux/cart/selectors'
+import { selectCart, selectCartItemById } from '../redux/cart/selectors'
 import { CartItem } from '../redux/cart/types'
-import { addItem } from '../redux/cart/slice'
+import { addItem, minusItem } from '../redux/cart/slice'
 import { useEffect, useRef } from 'react'
 import { ShowToast } from './ShowToast'
 
@@ -45,6 +45,9 @@ export const ProductDialog = ({
   const { items: cartItems } = useSelector(selectCart)
   const isMounted = useRef(false)
 
+  const cartItem = useSelector(selectCartItemById(Number(product?.id)))
+  const count = cartItem?.count || 0
+
   useEffect(() => {
     if (isMounted.current) {
       const json = JSON.stringify(cartItems)
@@ -53,6 +56,7 @@ export const ProductDialog = ({
     isMounted.current = true
   }, [cartItems])
   if (!product) return null
+
   const onClickAdd = () => {
     const item: CartItem = {
       id: product.id,
@@ -68,6 +72,11 @@ export const ProductDialog = ({
     }
     dispatch(addItem(item))
     ShowToast({ message: `${item?.name} was added to cart!` })
+  }
+
+  const onClickMinus = () => {
+    if (!cartItem || count <= 1) return
+    dispatch(minusItem(product.id.toString()))
   }
 
   return (
@@ -122,7 +131,9 @@ export const ProductDialog = ({
                       rounded-[100px] h-11 pl-4 pr-6 sm:px-[15px] hover:cursor-pointer`}
                 onClick={() => onChangeFirst(index)}
               >
-                <p className='font-[600] sm:font-[500] text-[16px] sm:text-[14px]'>{el}</p>
+                <p className='font-[600] sm:font-[500] text-[16px] sm:text-[14px]'>
+                  {el}
+                </p>
               </div>
             ))}
           </div>
@@ -143,12 +154,14 @@ export const ProductDialog = ({
                       rounded-[100px] h-11 pl-4 pr-6 sm:px-[15px] hover:cursor-pointer`}
                 onClick={() => onChangeSecond(index)}
               >
-                <p className='font-[600] sm:font-[500] text-[16px] sm:text-[14px]'>{el}</p>
+                <p className='font-[600] sm:font-[500] text-[16px] sm:text-[14px]'>
+                  {el}
+                </p>
               </div>
             ))}
           </div>
         </div>
-        <div className='flex mt-6 flex-row-reverse items-center gap-[20px]'>
+        <div className='flex mt-6 flex-row-reverse items-center gap-[10px]'>
           <button
             onClick={onClickAdd}
             className='w-full flex items-center justify-center gap-[5px] bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
@@ -156,6 +169,17 @@ export const ProductDialog = ({
             <ShoppingBasket size={20} />
             Add to cart
           </button>
+          {count >= 1 && (
+            <div className='flex gap-[10px] items-center'>
+              <button
+                onClick={onClickMinus}
+                className='border bg-secondareBgColor text-mainBgColor py-3 rounded-2xl px-3 border-gray-500'
+              >
+                <Minus />
+              </button>
+              <p className='text-xl'>{count}</p>
+            </div>
+          )}
           <Link
             to={`/${categoryNames[product.category]}/${product.id}`}
             className='flex w-full items-center justify-center bg-blue-600 text-white py-3 rounded-full hover:bg-blue-600 hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
