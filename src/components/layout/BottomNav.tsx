@@ -8,7 +8,7 @@ import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { selectCart } from '../../redux/cart/selectors'
 
-const BottomNav = () => {
+export const BottomNav = () => {
   const [value, setValue] = useState(0)
   const { items: cartItems } = useSelector(selectCart)
 
@@ -73,5 +73,3 @@ const BottomNav = () => {
     </div>
   )
 }
-
-export default BottomNav

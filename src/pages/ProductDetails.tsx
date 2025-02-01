@@ -9,9 +9,8 @@ import { Products } from '../redux/products/types'
 import { useAppDispatch } from '../redux/store'
 import { HomeIcon } from 'lucide-react'
 import { Helmet } from 'react-helmet'
-import { LoadingSpinner, Reviews } from '../components'
-import { ProductDetailsItem } from '../components/products/ProductDetailsItem'
-import { categoryNames } from '../constants'
+import { categoryNames } from '@/constants'
+import { LoadingSpinner, ProductDetailsItem, Reviews } from '@/components'
 
 const ProductDetails = () => {
   const { items, status } = useSelector(selectProduct)

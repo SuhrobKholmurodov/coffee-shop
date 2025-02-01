@@ -4,10 +4,10 @@ import logoMain from '../../assets/icons/logoMain.svg'
 import { useSelector } from 'react-redux'
 import { selectCart } from '../../redux/cart/selectors'
 import { Badge } from '@mui/material'
-import BottomNav from './BottomNav'
 import { SearchInput } from './SearchInput'
+import { BottomNav } from './BottomNav'
 
-const Header = () => {
+export const Header = () => {
   const location = useLocation()
   const { items: cartItems } = useSelector(selectCart)
   const totalCount = cartItems.reduce(
@@ -64,5 +64,3 @@ const Header = () => {
     </div>
   )
 }
-
-export default Header

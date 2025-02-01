@@ -4,8 +4,7 @@ import { useSelector } from 'react-redux'
 import { selectFilter } from '../redux/filter/selectors'
 import { setCategoryId } from '../redux/filter/slice'
 import { Helmet } from 'react-helmet'
-import { CategoryFilter } from '../components'
-import { ProductList } from '../components/products/ProductList'
+import { CategoryFilter, ProductList } from '@/components'
 
 export const Home = () => {
   const dispatch = useDispatch()

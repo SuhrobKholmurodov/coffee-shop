@@ -5,12 +5,12 @@ import { useDispatch, useSelector } from 'react-redux'
 import { clearItems, removeItem } from '../redux/cart/slice'
 import { selectCart } from '../redux/cart/selectors'
 import {
+  CartItems,
   CustomDialog,
   EmptyCart,
+  OrderSummary,
   ShowToast
-} from '../components'
-import { CartItems } from '../components/cart/CartItems'
-import { OrderSummary } from '../components/cart/OrderSummary'
+} from '@/components'
 import { categoryNames } from '@/constants'
 
 export const Cart = () => {
