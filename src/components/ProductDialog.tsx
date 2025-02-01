@@ -4,9 +4,10 @@ import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectCart, selectCartItemById } from '../redux/cart/selectors'
 import { CartItem } from '../redux/cart/types'
-import { addItem, minusItem } from '../redux/cart/slice'
-import { useEffect, useRef } from 'react'
+import { addItem, minusItem, removeItem } from '../redux/cart/slice'
+import { useEffect, useRef, useState } from 'react'
 import { ShowToast } from './ShowToast'
+import { CustomDialog } from './CustomDialog'
 
 interface Product {
   id: number
@@ -44,7 +45,8 @@ export const ProductDialog = ({
   const dispatch = useDispatch()
   const { items: cartItems } = useSelector(selectCart)
   const isMounted = useRef(false)
-
+  const [open, setOpen] = useState(false)
+  const [selectedItem, setSelectedItem] = useState<CartItem | null>(null)
   const cartItem = useSelector(selectCartItemById(Number(product?.id)))
   const count = cartItem?.count || 0
 
@@ -55,7 +57,21 @@ export const ProductDialog = ({
     }
     isMounted.current = true
   }, [cartItems])
+
   if (!product) return null
+
+  const handleClose = () => {
+    setOpen(false)
+    setSelectedItem(null)
+  }
+
+  const handleDeleteItem = () => {
+    if (selectedItem?.id !== undefined) {
+      dispatch(removeItem(selectedItem.id.toString()))
+      ShowToast({ message: `${selectedItem.name} was deleted` })
+    }
+    handleClose()
+  }
 
   const onClickAdd = () => {
     const item: CartItem = {
@@ -75,8 +91,14 @@ export const ProductDialog = ({
   }
 
   const onClickMinus = () => {
-    if (!cartItem || count <= 1) return
-    dispatch(minusItem(product.id.toString()))
+    if (!cartItem) return
+
+    if (count === 1) {
+      setSelectedItem(cartItem)
+      setOpen(true)
+    } else {
+      dispatch(minusItem(product.id.toString()))
+    }
   }
 
   return (
@@ -117,7 +139,9 @@ export const ProductDialog = ({
           </div>
         </div>
         <div className='mt-4'>
-          <p className='text-sm font-semibold mb-2'>Выберите первую опцию:</p>
+          <p className='text-sm font-semibold mb-2'>
+            Choose the first option:{' '}
+          </p>
           <div className='flex gap-[16px] sm:gap-[10px] flex-wrap mb-4'>
             {product.options.first.map((el, index) => (
               <div
@@ -138,9 +162,10 @@ export const ProductDialog = ({
             ))}
           </div>
         </div>
-
         <div>
-          <p className='text-sm font-semibold mb-2'>Выберите вторую опцию:</p>
+          <p className='text-sm font-semibold mb-2'>
+            Choose the second option:
+          </p>
           <div className='flex gap-[16px] sm:gap-[10px] flex-wrap'>
             {product.options.second.map((el, index) => (
               <div
@@ -192,6 +217,21 @@ export const ProductDialog = ({
             </div>
           </Link>
         </div>
+        <CustomDialog
+          open={open}
+          onClose={handleClose}
+          onConfirm={handleDeleteItem}
+          title='Delete item?'
+          description={
+            <>
+              Вы уверены, что хотите удалить{' '}
+              <span style={{ color: '#B0907A', fontWeight: 'bold' }}>
+                {selectedItem?.name}
+              </span>
+              ?
+            </>
+          }
+        />
       </div>
     </div>
   )

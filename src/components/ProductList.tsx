@@ -74,13 +74,16 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
           key={el.id}
           className='border border-secondareBgColor p-3 sm:p-4 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col h-[420px]'
         >
-          <div className='flex justify-center mb-3'>
+          <Link
+            to={`/${categoryNames[el.category]}/${el.id}`}
+            className='flex justify-center mb-3'
+          >
             <img
               className='h-[160px] w-[160px] object-cover'
               src={el.imageUrl}
               alt={el.name}
             />
-          </div>
+          </Link>
           <h2 className='text-lg font-semibold text-gray-800 dark:text-white'>
             {el.name}
           </h2>
