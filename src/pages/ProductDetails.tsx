@@ -9,7 +9,8 @@ import { Products } from '../redux/products/types'
 import { useAppDispatch } from '../redux/store'
 import { HomeIcon } from 'lucide-react'
 import { Helmet } from 'react-helmet'
-import { LoadingSpinner, ProductDetailsItem, Reviews } from '../components'
+import { LoadingSpinner, Reviews } from '../components'
+import { ProductDetailsItem } from '../components/products/ProductDetailsItem'
 
 const categoryNames = ['coffees', 'teas', 'desserts']
 

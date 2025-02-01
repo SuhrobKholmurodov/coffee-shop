@@ -1,8 +1,8 @@
 import { Trash2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
-import { CartItem } from '../redux/cart/types'
-import { addItem, minusItem } from '../redux/cart/slice'
 import { useDispatch } from 'react-redux'
+import { CartItem } from '../../redux/cart/types'
+import { addItem, minusItem } from '../../redux/cart/slice'
 import { ItemCounter } from './ItemCounter'
 
 interface CartItemsProps {
@@ -57,10 +57,10 @@ export const CartItems = ({ cartItems, handleClickOpen }: CartItemsProps) => {
               <div className='flex sm:flex-wrap-reverse sm:mt-2 mt-3 sm:gap-3 items-center gap-[20px]'>
                 <p className='sm:hidden text-xl'>Options:</p>
                 <p className='px-3 py-[3px] sm:px-2 sm:py-1 text-white rounded-full bg-gray-600'>
-                  {item.options.first}
+                  {item.options?.first}
                 </p>
                 <p className='px-3 py-[3px] text-white rounded-full bg-gray-600'>
-                  {item.options.second}
+                  {item.options?.second}
                 </p>
               </div>
             </div>

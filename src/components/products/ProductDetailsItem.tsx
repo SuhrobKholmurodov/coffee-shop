@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { addItem, minusItem } from '../redux/cart/slice'
-import { selectCartItemById } from '../redux/cart/selectors'
-import { ShowToast } from '../components'
-import { Products } from '../redux/products/types'
-import { ItemCounter } from '../components'
 import { ShoppingBasket } from 'lucide-react'
 import { useState } from 'react'
+import { selectCartItemById } from '../../redux/cart/selectors'
+import { Products } from '../../redux/products/types'
+import { addItem, minusItem } from '../../redux/cart/slice'
+import { ShowToast } from '../common/ShowToast'
+import { ItemCounter } from '../cart/ItemCounter'
 
 interface ProductDetailsItemProps {
   product: Products

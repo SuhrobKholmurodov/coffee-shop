@@ -5,8 +5,8 @@ import { Link } from 'react-router-dom'
 import { HomeIcon, Phone, Info, ShoppingCart } from 'lucide-react'
 import { Badge } from '@mui/material'
 import { useSelector } from 'react-redux'
-import { selectCart } from '../redux/cart/selectors'
 import { useState } from 'react'
+import { selectCart } from '../../redux/cart/selectors'
 
 const BottomNav = () => {
   const [value, setValue] = useState(0)

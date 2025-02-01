@@ -1,12 +1,12 @@
 import { Eye, Minus, ShoppingBasket, X } from 'lucide-react'
-import { Reviews } from '../redux/products/types'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectCart, selectCartItemById } from '../redux/cart/selectors'
-import { CartItem } from '../redux/cart/types'
-import { addItem, minusItem, removeItem } from '../redux/cart/slice'
 import { useEffect, useRef, useState } from 'react'
-import { ShowToast } from './ShowToast'
+import { Reviews } from '../../redux/products/types'
+import { selectCart, selectCartItemById } from '../../redux/cart/selectors'
+import { CartItem } from '../../redux/cart/types'
+import { addItem, minusItem, removeItem } from '../../redux/cart/slice'
+import { ShowToast } from '../common/ShowToast'
 import { CustomDialog } from './CustomDialog'
 
 interface Product {

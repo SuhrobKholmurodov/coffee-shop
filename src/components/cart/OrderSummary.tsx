@@ -1,6 +1,6 @@
-import { CartItem } from '../redux/cart/types';
-import { OrderTotalInfo } from './OrderTotalInfo';
-import { OrderForm } from './OrderForm';
+import { CartItem } from "../../redux/cart/types";
+import { OrderForm } from "./OrderForm";
+import { OrderTotalInfo } from "./OrderTotalInfo";
 
 interface OrderSummaryProps {
   cartItems: CartItem[];

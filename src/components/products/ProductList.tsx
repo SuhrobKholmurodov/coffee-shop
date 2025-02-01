@@ -1,16 +1,16 @@
 import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import { selectProduct } from '../redux/products/selectors'
-import { fetchProducts } from '../redux/products/asyncActions'
-import { useAppDispatch } from '../redux/store'
 import { Eye, MessageCircle, ShoppingCart } from 'lucide-react'
 import { Star } from '@mui/icons-material'
-import { Products } from '../redux/products/types'
+import { Link } from 'react-router-dom'
+import { useAppDispatch } from '../../redux/store'
+import { selectProduct } from '../../redux/products/selectors'
+import { Products } from '../../redux/products/types'
+import { selectSearchValue } from '../../redux/filter/selectors'
+import { selectCart } from '../../redux/cart/selectors'
+import { fetchProducts } from '../../redux/products/asyncActions'
 import { Skeleton } from './Skeleteon'
 import { ProductDialog } from './ProductDialog'
-import { Link } from 'react-router-dom'
-import { selectSearchValue } from '../redux/filter/selectors'
-import { selectCart } from '../redux/cart/selectors'
 
 interface ProductListProps {
   categoryId: number

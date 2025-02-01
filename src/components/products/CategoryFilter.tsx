@@ -1,6 +1,6 @@
-import cofeecat from '../assets/icons/coffeecat.svg'
-import desertcat from '../assets/icons/desertcat.svg'
-import teacat from '../assets/icons/teacat.svg'
+import cofeecat from '../../assets/icons/coffeecat.svg'
+import desertcat from '../../assets/icons/desertcat.svg'
+import teacat from '../../assets/icons/teacat.svg'
 
 interface CategoryFilter {
   categoryId: number | null
