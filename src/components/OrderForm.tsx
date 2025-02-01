@@ -69,7 +69,7 @@ export const OrderForm = () => {
           placeholder='Your phone number'
           {...register('phone')}
           pattern='\d*'
-          className={`w-full p-0 text-gray-500 pl-2 border-none focus:outline-none focus:ring-0`}
+          className={`w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none p-0 text-gray-500 pl-2 border-none focus:outline-none focus:ring-0`}
         />
       </div>
       {errors.phone && (
