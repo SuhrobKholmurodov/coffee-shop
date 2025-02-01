@@ -13,7 +13,7 @@ Welcome to the **Coffee Shop** project! This repository contains the source code
 
 ## Technologies Used 🛠️
 
-Below is a list of all the dependencies used in this project, along with their descriptions and unique icons.
+Below is a list of all the dependencies used in this project, along with their descriptions
 
 ---
 
@@ -27,7 +27,6 @@ Below is a list of all the dependencies used in this project, along with their d
 
   - `@mui/icons-material`
   - `@mui/material`
-  - `@mui/styled-engine-sc`
 
 - ⚡ **TailwindCSS** - Utility-first CSS framework for rapid UI development.
   - `tailwindcss`
@@ -143,7 +142,11 @@ Below is a list of all the dependencies used in this project, along with their d
    ```bash
    pnpm run dev
    ```
-
+4. Start the development server with network access
+   ```bash
+   pnpm run dev --host 
+   ```
+   
 ---
 
 ### Contributing 🤝
