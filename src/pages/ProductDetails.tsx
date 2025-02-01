@@ -11,8 +11,7 @@ import { HomeIcon } from 'lucide-react'
 import { Helmet } from 'react-helmet'
 import { LoadingSpinner, Reviews } from '../components'
 import { ProductDetailsItem } from '../components/products/ProductDetailsItem'
-
-const categoryNames = ['coffees', 'teas', 'desserts']
+import { categoryNames } from '../constants'
 
 const ProductDetails = () => {
   const { items, status } = useSelector(selectProduct)

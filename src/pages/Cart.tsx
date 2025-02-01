@@ -11,6 +11,7 @@ import {
 } from '../components'
 import { CartItems } from '../components/cart/CartItems'
 import { OrderSummary } from '../components/cart/OrderSummary'
+import { categoryNames } from '@/constants'
 
 export const Cart = () => {
   const [open, setOpen] = useState(false)
@@ -51,8 +52,6 @@ export const Cart = () => {
     ShowToast({ message: 'All items were deleted!' })
     setOpenDialogClearItems(false)
   }
-
-  const categoryNames: string[] = ['coffees', 'teas', 'desserts']
 
   useEffect(() => {
     localStorage.setItem('cart', JSON.stringify(cartItems.items))

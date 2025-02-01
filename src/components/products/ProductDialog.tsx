@@ -8,7 +8,7 @@ import { CartItem } from '../../redux/cart/types'
 import { addItem, minusItem, removeItem } from '../../redux/cart/slice'
 import { ShowToast } from '../common/ShowToast'
 import { CustomDialog } from './CustomDialog'
-
+import { categoryNames } from '@/constants'
 interface Product {
   id: number
   name: string
@@ -22,8 +22,6 @@ interface Product {
   }
   reviews: Reviews[]
 }
-
-const categoryNames = ['coffees', 'teas', 'desserts']
 
 interface ProductDialogProps {
   product?: Product | null

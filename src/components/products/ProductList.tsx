@@ -11,12 +11,10 @@ import { selectCart } from '../../redux/cart/selectors'
 import { fetchProducts } from '../../redux/products/asyncActions'
 import { Skeleton } from './Skeleteon'
 import { ProductDialog } from './ProductDialog'
-
+import { categoryNames } from '@/constants'
 interface ProductListProps {
   categoryId: number
 }
-
-const categoryNames = ['coffees', 'teas', 'desserts']
 
 export const ProductList = ({ categoryId }: ProductListProps) => {
   const dispatch = useAppDispatch()
