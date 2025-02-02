@@ -6,7 +6,7 @@ import { HomeIcon, Phone, Info, ShoppingCart } from 'lucide-react'
 import { Badge } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
-import { selectCart } from '../../redux/cart/selectors'
+import { selectCart } from '@/redux/cart/selectors'
 
 export const BottomNav = () => {
   const [value, setValue] = useState(0)

@@ -1,4 +1,4 @@
-import { CartItem } from "../../redux/cart/types";
+import { CartItem } from "@/redux/cart/types";
 import { OrderForm } from "./OrderForm";
 import { OrderTotalInfo } from "./OrderTotalInfo";
 

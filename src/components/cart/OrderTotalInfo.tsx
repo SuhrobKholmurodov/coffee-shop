@@ -1,5 +1,5 @@
+import { CartItem } from '@/redux/cart/types'
 import { Trash2 } from 'lucide-react'
-import { CartItem } from '../../redux/cart/types'
 
 interface OrderTotalInfoProps {
   cartItems: CartItem[]

@@ -4,13 +4,13 @@ import { NavLink, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import Typography from '@mui/material/Typography'
 import Breadcrumbs from '@mui/material/Breadcrumbs'
-import { fetchProducts } from '../redux/products/asyncActions'
-import { Products } from '../redux/products/types'
-import { useAppDispatch } from '../redux/store'
 import { HomeIcon } from 'lucide-react'
 import { Helmet } from 'react-helmet'
 import { categoryNames } from '@/constants'
 import { LoadingSpinner, ProductDetailsItem, Reviews } from '@/components'
+import { fetchProducts } from '@/services/productsApi'
+import { useAppDispatch } from '@/redux/store'
+import { Products } from '@/redux/products/types'
 
 const ProductDetails = () => {
   const { items, status } = useSelector(selectProduct)

@@ -1,7 +1,7 @@
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import z from 'zod'
-import { ShowToast } from '../common/ShowToast'
+import { ShowToast } from '../common'
 
 const orderSchema = z.object({
   name: z

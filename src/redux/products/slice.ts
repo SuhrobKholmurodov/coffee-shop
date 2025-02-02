@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { fetchProducts } from './asyncActions'
 import { Products, ProductsSliceState, Status } from './types'
+import { fetchProducts } from '@/services/productsApi'
 
 const initialState: ProductsSliceState = {
   items: [],

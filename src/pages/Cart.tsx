@@ -1,9 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Helmet } from 'react-helmet'
-import { CartItem } from '../redux/cart/types'
 import { useDispatch, useSelector } from 'react-redux'
-import { clearItems, removeItem } from '../redux/cart/slice'
-import { selectCart } from '../redux/cart/selectors'
 import {
   CartItems,
   CustomDialog,
@@ -12,6 +9,9 @@ import {
   ShowToast
 } from '@/components'
 import { categoryNames } from '@/constants'
+import { CartItem } from '@/redux/cart/types'
+import { selectCart } from '@/redux/cart/selectors'
+import { clearItems, removeItem } from '@/redux/cart/slice'
 
 export const Cart = () => {
   const [open, setOpen] = useState(false)

@@ -1,10 +1,10 @@
 import { Trash2 } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
-import { CartItem } from '../../redux/cart/types'
-import { addItem, minusItem } from '../../redux/cart/slice'
 import { ItemCounter } from './ItemCounter'
 import { categoryNames } from '@/constants'
+import { CartItem } from '@/redux/cart/types'
+import { addItem, minusItem } from '@/redux/cart/slice'
 
 interface CartItemsProps {
   cartItems: CartItem[]

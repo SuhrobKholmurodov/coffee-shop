@@ -2,10 +2,10 @@ import { NavLink, Link, Outlet, useLocation } from 'react-router-dom'
 import { ShoppingCart } from 'lucide-react'
 import logoMain from '../../assets/icons/logoMain.svg'
 import { useSelector } from 'react-redux'
-import { selectCart } from '../../redux/cart/selectors'
 import { Badge } from '@mui/material'
 import { SearchInput } from './SearchInput'
 import { BottomNav } from './BottomNav'
+import { selectCart } from '@/redux/cart/selectors'
 
 export const Header = () => {
   const location = useLocation()

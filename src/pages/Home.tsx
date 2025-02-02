@@ -1,10 +1,10 @@
 import { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
-import { selectFilter } from '../redux/filter/selectors'
-import { setCategoryId } from '../redux/filter/slice'
 import { Helmet } from 'react-helmet'
 import { CategoryFilter, ProductList } from '@/components'
+import { selectFilter } from '@/redux/filter/selectors'
+import { setCategoryId } from '@/redux/filter/slice'
 
 export const Home = () => {
   const dispatch = useDispatch()
