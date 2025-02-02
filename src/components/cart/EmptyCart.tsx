@@ -22,7 +22,7 @@ export const EmptyCart = () => {
       <div className='animate__animated animate__fadeInUp'>
         <Link
           to='/'
-          className='px-8 py-3 bg-blue-600 text-white font-semibold rounded-full shadow-lg hover:bg-blue-700 transition-all duration-300'
+          className='px-8 py-3 bg-[#B0907A] hover:bg-[#9b7e6c] text-white font-semibold rounded-full shadow-lg transition-all duration-300'
         >
           Start Shopping
         </Link>

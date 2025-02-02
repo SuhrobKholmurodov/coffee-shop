@@ -10,7 +10,7 @@ interface OrderSummaryProps {
 
 export const OrderSummary = ({ cartItems, categoryNames, onDeleteAll }: OrderSummaryProps) => {
   return (
-    <div className="right bg-gray-100 rounded-lg sm:relative sm:top-4 fixed top-[100px] right-[3%] sm:right-0 flex gap-[55px] flex-col sm:p-0 p-4">
+    <div className="right bg-gray-100 rounded-lg sm:relative sm:top-4 fixed top-[100px] right-[3%] sm:right-0 flex gap-[70px] flex-col sm:p-0 p-4">
       <OrderTotalInfo cartItems={cartItems} categoryNames={categoryNames} onDeleteAll={onDeleteAll} />
       <OrderForm />
     </div>

@@ -118,7 +118,7 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
             <div className='grid grid-cols-2 gap-2'>
               <Link
                 to={`/${categoryNames[el.category]}/${el.id}`}
-                className='items-center justify-center bg-blue-600 text-white py-2 px-2 rounded-2xl hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300 hover:bg-blue-600'
+                className='items-center justify-center bg-[#B0907A] hover:bg-[#9b7e6c] text-mainBgColor py-2 px-2 rounded-2xl hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
               >
                 <div className='flex items-center gap-[5px]'>
                   <p>

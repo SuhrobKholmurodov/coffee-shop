@@ -1,9 +1,9 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import './App.css'
-import Layouts from './layouts/Layouts'
 import { About, Cart, Contacts, Home, NotFound } from './pages'
 import { lazy, Suspense } from 'react'
 import 'animate.css';
+import Layouts from './layouts/Layouts';
 
 const ProductDetails = lazy(() => import('./pages/ProductDetails'))
 

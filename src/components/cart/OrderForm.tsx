@@ -80,7 +80,7 @@ export const OrderForm = () => {
 
       <button
         type='submit'
-        className='w-full bg-blue-600 focus:outline-none text-white py-3 rounded-lg font-medium hover:bg-blue-700 transition-all'
+        className='w-full bg-[#B0907A] hover:bg-[#9b7e6c] focus:outline-none text-white py-3 rounded-lg font-medium transition-all'
       >
         🚀 Place an order
       </button>

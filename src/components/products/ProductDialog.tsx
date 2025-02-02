@@ -205,7 +205,7 @@ export const ProductDialog = ({
           )}
           <Link
             to={`/${categoryNames[product.category]}/${product.id}`}
-            className='flex w-full items-center justify-center bg-blue-600 text-white py-3 rounded-full hover:bg-blue-600 hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
+            className='flex w-full items-center justify-center bg-[#B0907A] hover:bg-[#9b7e6c] text-white py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
           >
             <div className='flex items-center gap-[5px]'>
               <p>
