@@ -11,7 +11,6 @@ const orderSchema = z.object({
   phone: z
     .string()
     .min(9, 'Phone number cannot be less than 9 digits')
-    .max(15, 'Phone number cannot be greater than 15 digits')
     .refine(val => /^\+?[0-9]+$/.test(val), {
       message: 'Phone number is invalid'
     })
@@ -63,12 +62,19 @@ export const OrderForm = () => {
           errors.phone ? 'border-red-500' : 'border-gray-300'
         }`}
       >
-        <span className='pr-2 text-gray-500 border-r border-gray-300'>+992</span>
+        <span className='pr-2 text-gray-500 border-r border-gray-300'>
+          +992
+        </span>
         <input
-          type='number'
+          type='text' 
           placeholder='Your phone number'
-          {...register('phone')}
-          pattern='\d*'
+          {...register('phone', {
+            onChange: e => {
+              const value = e.target.value.replace(/\D/g, '').slice(0, 9) 
+              e.target.value = value 
+            }
+          })}
+          pattern='\d*' 
           className={`w-full [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none p-0 text-gray-500 pl-2 border-none focus:outline-none focus:ring-0`}
         />
       </div>
