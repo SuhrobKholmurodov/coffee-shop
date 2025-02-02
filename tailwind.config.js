@@ -7,7 +7,7 @@ export default {
       xl: { max: '1279px' },
       lg: { max: '1110px' },
       md: { max: '1010px' },
-      sm: { max: '428px' }
+      sm: { max: '600px' }
     },
     extend: {
       colors: {

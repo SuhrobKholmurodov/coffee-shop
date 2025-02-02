@@ -47,10 +47,10 @@ export const CartItems = ({ cartItems, handleClickOpen }: CartItemsProps) => {
           <div className='grid grid-cols-1'>
             <div>
               <div className='sm:flex sm:flex-row-reverse sm:items-start sm:justify-between'>
-                <p className='text-[21px] font-[700] text-gray-500'>
-                  {item.price}$.
+                <p className='whitespace-nowrap text-[21px] font-[700] text-gray-500'>
+                  {item.price}$
                 </p>
-                <h3 className='text-[22px] sm:text-[19px] font-semibold'>
+                <h3 className=' truncate min-w-0 text-[22px] sm:text-[19px] font-semibold'>
                   {item.name}
                 </h3>
               </div>
