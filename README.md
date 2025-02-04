@@ -132,7 +132,7 @@ Below is a list of all the dependencies used in this project, along with their d
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/coffee-shop.git
+   git clone https://github.com/SuhrobKholmurodov/coffee-shop.git
    ```
 2. Install dependencies: 
    ```bash 
