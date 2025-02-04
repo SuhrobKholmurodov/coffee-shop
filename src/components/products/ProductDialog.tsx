@@ -137,12 +137,12 @@ export const ProductDialog = ({
           </div>
         </div>
         <div className='mt-4'>
-          <div className='flex items-center justify-between'>
-            <p className='text-sm font-semibold mb-2'>
+          <div className='flex items-center mb-2 justify-between'>
+            <p className='sm:text-sm text-[17px] font-semibold sm:font-bold'>
               Choose the first option:{' '}
-            </p>
+            </p> 
             {count >= 1 && (
-              <p className='font-bold'>Total price: {product.price * count}$</p>
+              <p className='sm:font-bold sm:text-sm text-[17px] font-semibold'>Total price: {product.price * count}$</p>
             )}
           </div>
           <div className='flex gap-[16px] sm:gap-[10px] flex-wrap mb-4'>
@@ -166,7 +166,7 @@ export const ProductDialog = ({
           </div>
         </div>
         <div>
-          <p className='text-sm font-semibold mb-2'>
+          <p className='sm:text-sm sm:font-bold text-[17px] font-semibold mb-2'>
             Choose the second option:
           </p>
           <div className='flex gap-[16px] sm:gap-[10px] flex-wrap'>

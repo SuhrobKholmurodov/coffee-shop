@@ -4,6 +4,7 @@ import { About, Cart, Contacts, Home, NotFound } from './pages'
 import { lazy, Suspense } from 'react'
 import 'animate.css'
 import Layouts from './layouts/Layouts'
+import { LoadingSpinner } from './components'
 
 const ProductDetails = lazy(() => import('./pages/ProductDetails'))
 
@@ -20,7 +21,7 @@ const App = () => {
         {
           path: '/:category/:id',
           element: (
-            <Suspense fallback={<div className='text-center'>Загрузка...</div>}>
+            <Suspense fallback={<LoadingSpinner />}>
               <ProductDetails />
             </Suspense>
           )
