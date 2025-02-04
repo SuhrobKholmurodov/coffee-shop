@@ -189,11 +189,13 @@ export const ProductDialog = ({
             onClick={onClickAdd}
             className='w-full flex items-center justify-center gap-[5px] bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
           >
-            <ShoppingBasket size={20} />
+            <p>
+              <ShoppingBasket size={20} />
+            </p>
             Add to cart
           </button>
           {count >= 1 && (
-            <div className='flex gap-[10px] items-center'>
+            <div className='flex gap-[10px] sm:gap-[5px] items-center'>
               <button
                 onClick={onClickMinus}
                 className='border bg-secondareBgColor text-mainBgColor py-3 rounded-2xl px-3 border-gray-500'
@@ -201,7 +203,12 @@ export const ProductDialog = ({
                 <Minus />
               </button>
               <p className='text-`xl'>{count}</p>
-              <Plus />
+              <button
+                onClick={onClickAdd}
+                className='border bg-secondareBgColor text-mainBgColor py-3 rounded-2xl px-3 border-gray-500'
+              >
+                <Plus />
+              </button>
             </div>
           )}
           <Link
@@ -209,7 +216,7 @@ export const ProductDialog = ({
             className='flex w-full items-center justify-center bg-[#B0907A] hover:bg-[#9b7e6c] text-white py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
           >
             <div className='flex items-center gap-[5px]'>
-              <p>
+              <p style={{ display: count >= 1 ? 'hidden' : 'block' }}>
                 <Eye size={20} />
               </p>
               <p>More Details</p>
