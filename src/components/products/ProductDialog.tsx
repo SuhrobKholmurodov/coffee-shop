@@ -189,9 +189,11 @@ export const ProductDialog = ({
             onClick={onClickAdd}
             className='w-full flex items-center justify-center gap-[5px] bg-secondareBgColor text-mainBgColor py-3 rounded-full hover:bg-opacity-90 sm:hover:scale-100 hover:scale-105 hover:shadow-lg transition-transform duration-300'
           >
-            <p>
-              <ShoppingBasket size={20} />
-            </p>
+            {count < 1 && (
+              <p>
+                <ShoppingBasket size={20} />
+              </p>
+            )}
             Add to cart
           </button>
           {count >= 1 && (
@@ -217,7 +219,11 @@ export const ProductDialog = ({
           >
             <div className='flex items-center gap-[5px]'>
               <p style={{ display: count >= 1 ? 'hidden' : 'block' }}>
-                <Eye size={20} />
+                {count < 1 && (
+                  <p>
+                    <Eye size={20} />
+                  </p>
+                )}
               </p>
               <p>More Details</p>
             </div>
