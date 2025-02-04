@@ -137,9 +137,14 @@ export const ProductDialog = ({
           </div>
         </div>
         <div className='mt-4'>
-          <p className='text-sm font-semibold mb-2'>
-            Choose the first option:{' '}
-          </p>
+          <div className='flex items-center justify-between'>
+            <p className='text-sm font-semibold mb-2'>
+              Choose the first option:{' '}
+            </p>
+            {count >= 1 && (
+              <p className='font-bold'>Total price: {product.price * count}$</p>
+            )}
+          </div>
           <div className='flex gap-[16px] sm:gap-[10px] flex-wrap mb-4'>
             {product.options.first.map((el, index) => (
               <div
