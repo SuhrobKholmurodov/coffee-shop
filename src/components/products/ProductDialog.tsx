@@ -1,4 +1,4 @@
-import { Eye, Minus, ShoppingBasket, X } from 'lucide-react'
+import { Eye, Minus, Plus, ShoppingBasket, X } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { useEffect, useRef, useState } from 'react'
@@ -200,7 +200,8 @@ export const ProductDialog = ({
               >
                 <Minus />
               </button>
-              <p className='text-xl'>{count}</p>
+              <p className='text-`xl'>{count}</p>
+              <Plus />
             </div>
           )}
           <Link
