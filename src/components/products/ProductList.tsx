@@ -12,6 +12,7 @@ import { selectProduct } from '@/redux/products/selectors'
 import { Products } from '@/redux/products/types'
 import { selectSearchValue } from '@/redux/filter/selectors'
 import { selectCart } from '@/redux/cart/selectors'
+import { calculateAverageRating } from '@/utils/calculateAverageRating'
 
 interface ProductListProps {
   categoryId: number
@@ -38,15 +39,6 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
   }, [categoryId, dispatch, searchValue])
 
   const filteredItems = items.filter(item => item.category === categoryId)
-
-  const calculateAverageRating = (
-    reviews: { rating: number }[]
-  ): number | string => {
-    if (reviews.length === 0) return 0
-    const totalRating = reviews.reduce((acc, review) => acc + review.rating, 0)
-    const average = totalRating / reviews.length
-    return average.toFixed(1).replace(/\.0$/, '')
-  }
 
   if (status === 'loading') {
     return (
