@@ -29,7 +29,7 @@ export const Reviews = ({ reviews, averageRating }: ReviewsProps) => {
             aria-controls='panel1-content'
             id='panel1-header'
           >
-            <div className='flex justify-between w-full'>
+            <div className='flex gap-12 items-center sm:gap-6 w-full'>
               <h2 className='text-xl sm:text-lg font-semibold text-gray-800 flex items-center'>
                 Reviews: {reviews.length}
               </h2>
