@@ -12,6 +12,7 @@ import { selectProduct } from '@/redux/products/selectors'
 import { Products } from '@/redux/products/types'
 import { selectSearchValue } from '@/redux/filter/selectors'
 import { selectCart } from '@/redux/cart/selectors'
+
 interface ProductListProps {
   categoryId: number
 }
@@ -68,6 +69,10 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
       {filteredItems.map(el => {
         const cartItem = cartItems.items.find(item => item.id === el.id)
         const count = cartItem?.count || 0
+        const descriptionPiece = el.description
+          .split(' ')
+          .slice(0, 10)
+          .join(' ')
         return (
           <div
             key={el.id}
@@ -87,7 +92,7 @@ export const ProductList = ({ categoryId }: ProductListProps) => {
               {el.name}
             </h2>
             <p className='text-gray-600 dark:text-gray-400 text-sm flex-grow overflow-hidden text-ellipsis'>
-              {el.description.split(' ').slice(0, 10).join(' ')}
+              {descriptionPiece}
               {el.description.split(' ').length > 10 && (
                 <Link
                   to={`/${categoryNames[el.category]}/${el.id}`}
