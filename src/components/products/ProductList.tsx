@@ -12,7 +12,7 @@ import { selectProduct } from '@/redux/products/selectors'
 import { Products } from '@/redux/products/types'
 import { selectSearchValue } from '@/redux/filter/selectors'
 import { selectCart } from '@/redux/cart/selectors'
-import { calculateAverageRating } from '@/utils/calculateAverageRating'
+import { calculateAverageRating } from '@/utils'
 
 interface ProductListProps {
   categoryId: number
