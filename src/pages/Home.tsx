@@ -3,12 +3,12 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { CategoryFilter, ProductList } from '@/components'
-import { selectFilter } from '@/redux/filter/selectors'
-import { setCategoryId } from '@/redux/filter/slice'
+import { selectCategoryId } from '@/redux/products/selectors' 
+import { setCategoryId } from '@/redux/products/slice'
 
 export const Home = () => {
   const dispatch = useDispatch()
-  const { categoryId } = useSelector(selectFilter)
+  const categoryId = useSelector(selectCategoryId)
 
   const onChangeCategory = (index: number) => {
     dispatch(setCategoryId(index))

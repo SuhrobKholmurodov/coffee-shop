@@ -1,8 +1,8 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Search, X } from 'lucide-react'
-import { selectSearchValue } from '@/redux/filter/selectors'
-import { setSearchValue } from '@/redux/filter/slice'
+import { selectSearchValue } from '@/redux/products/selectors'
+import { setSearchValue } from '@/redux/products/slice'
 
 export const SearchInput = () => {
   const dispatch = useDispatch()

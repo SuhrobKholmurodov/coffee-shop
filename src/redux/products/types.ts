@@ -31,6 +31,8 @@ export enum Status {
 export interface ProductsSliceState {
   items: Products[]
   status: Status
+  searchValue: string 
+  categoryId: number
 }
 
 export type SearchProductsParams = {

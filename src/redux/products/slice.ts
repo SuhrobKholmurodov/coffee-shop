@@ -4,7 +4,9 @@ import { fetchProducts } from '@/services/productsApi'
 
 const initialState: ProductsSliceState = {
   items: [],
-  status: Status.LOADING
+  status: Status.LOADING,
+  searchValue: '',  
+  categoryId: 0     
 }
 
 const ProductsSlice = createSlice({
@@ -13,6 +15,12 @@ const ProductsSlice = createSlice({
   reducers: {
     setItems (state, action: PayloadAction<Products[]>) {
       state.items = action.payload
+    },
+    setSearchValue (state, action: PayloadAction<string>) {
+      state.searchValue = action.payload  
+    },
+    setCategoryId (state, action: PayloadAction<number>) {
+      state.categoryId = action.payload  
     }
   },
   extraReducers: builder => {
@@ -36,6 +44,6 @@ const ProductsSlice = createSlice({
   }
 })
 
-export const { setItems } = ProductsSlice.actions
+export const { setItems, setSearchValue, setCategoryId } = ProductsSlice.actions
 
 export default ProductsSlice.reducer
