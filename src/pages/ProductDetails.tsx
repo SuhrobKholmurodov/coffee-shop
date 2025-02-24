@@ -11,6 +11,7 @@ import { LoadingSpinner, ProductDetailsItem, Reviews } from '@/components'
 import { fetchProducts } from '@/services/productsApi'
 import { useAppDispatch } from '@/redux/store'
 import { Products } from '@/redux/products/types'
+import { calculateAverageRating } from '@/utils'
 
 const ProductDetails = () => {
   const { items, status } = useSelector(selectProduct)
@@ -56,15 +57,7 @@ const ProductDetails = () => {
     return <div className='text-red-500 text-center'>Продукт не найден.</div>
   }
 
-  const averageRating =
-    product.reviews.length > 0
-      ? (
-          product.reviews.reduce((acc, review) => acc + review.rating, 0) /
-          product.reviews.length
-        )
-          .toFixed(1)
-          .replace(/\.0$/, '')
-      : '0'
+  const averageRating = calculateAverageRating(product.reviews)
 
   return (
     <div>
