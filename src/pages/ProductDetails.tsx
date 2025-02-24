@@ -59,13 +59,14 @@ const ProductDetails = () => {
 
   const averageRating = calculateAverageRating(product.reviews)
 
+  const formattedCategoryName =
+    categoryNames[product.category].charAt(0).toUpperCase() +
+    categoryNames[product.category].slice(1)
+
   return (
     <div>
       <Helmet>
-        <title>{`${
-          categoryNames[product.category].charAt(0).toUpperCase() +
-          categoryNames[product.category].slice(1)
-        } | ${product.name}`}</title>
+        <title>{`${formattedCategoryName} | ${product.name}`}</title>
       </Helmet>
 
       <div role='presentation'>
@@ -74,8 +75,7 @@ const ProductDetails = () => {
             <HomeIcon fontSize='12px' />
           </NavLink>
           <Typography sx={{ color: 'text.primary' }}>
-            {categoryNames[product.category].charAt(0).toUpperCase() +
-              categoryNames[product.category].slice(1)}
+            {formattedCategoryName}
           </Typography>
           <Typography sx={{ color: 'text.primary' }}>{product.name}</Typography>
         </Breadcrumbs>
