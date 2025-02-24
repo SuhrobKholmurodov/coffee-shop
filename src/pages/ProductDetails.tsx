@@ -62,8 +62,12 @@ const ProductDetails = () => {
   return (
     <div>
       <Helmet>
-        <title>{product.name}</title>
+        <title>{`${
+          categoryNames[product.category].charAt(0).toUpperCase() +
+          categoryNames[product.category].slice(1)
+        } | ${product.name}`}</title>
       </Helmet>
+
       <div role='presentation'>
         <Breadcrumbs aria-label='breadcrumb'>
           <NavLink to={'/'}>
