@@ -6,14 +6,13 @@ import { Badge } from '@mui/material'
 import { SearchInput } from './SearchInput'
 import { BottomNav } from './BottomNav'
 import { selectCart } from '@/redux/cart/selectors'
+import { calculateTotalCount } from '@/utils'
 
 export const Header = () => {
   const location = useLocation()
   const { items: cartItems } = useSelector(selectCart)
-  const totalCount = cartItems.reduce(
-    (sum: number, item) => sum + item.count,
-    0
-  )
+
+  const totalCount = calculateTotalCount(cartItems)
 
   return (
     <div className='sm:flex sm:flex-col sm:min-h-screen'>

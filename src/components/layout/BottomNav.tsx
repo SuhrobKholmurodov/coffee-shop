@@ -7,15 +7,14 @@ import { Badge } from '@mui/material'
 import { useSelector } from 'react-redux'
 import { useState } from 'react'
 import { selectCart } from '@/redux/cart/selectors'
+import { calculateTotalCount } from '@/utils'
 
 export const BottomNav = () => {
   const [value, setValue] = useState(0)
   const { items: cartItems } = useSelector(selectCart)
 
-  const totalCount = cartItems.reduce(
-    (sum: number, item) => sum + item.count,
-    0
-  )
+  const totalCount = calculateTotalCount(cartItems)
+  
 
   return (
     <div className='sm:flex hidden fixed bottom-0 left-0 right-0'>
