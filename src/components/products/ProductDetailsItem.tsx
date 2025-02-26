@@ -69,7 +69,7 @@ export const ProductDetailsItem = ({ product }: ProductDetailsItemProps) => {
           {product.description}
         </p>
         <div className='mt-4'>
-          <p className='text-sm font-semibold mb-4'>Выберите первую опцию:</p>
+          <p className='text-sm font-semibold mb-4'>Choose first option:</p>
           <div className='flex gap-[16px] sm:gap-[10px] flex-wrap mb-4'>
             {product.options.first.map((el, index) => (
               <div
@@ -87,7 +87,7 @@ export const ProductDetailsItem = ({ product }: ProductDetailsItemProps) => {
           </div>
         </div>
         <div className='mt-8'>
-          <p className='text-sm font-semibold mb-4'>Выберите вторую опцию:</p>
+          <p className='text-sm font-semibold mb-4'>Choose second option:</p>
           <div className='flex gap-[16px] sm:gap-[10px] flex-wrap'>
             {product.options.second.map((el, index) => (
               <div

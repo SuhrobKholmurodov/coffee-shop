@@ -57,9 +57,11 @@ export const Reviews = ({ reviews, averageRating }: ReviewsProps) => {
                         </Typography>
                         <Typography variant='body1' className='font-semibold'>
                           {review.recomendation ? (
-                            <span className='text-green-600'>Рекомендует</span>
+                            <span className='text-green-600'>Recommends</span>
                           ) : (
-                            <span className='text-red-600'>Не рекомендует</span>
+                            <span className='text-red-600'>
+                              Doesn't recommend
+                            </span>
                           )}
                         </Typography>
                       </div>
