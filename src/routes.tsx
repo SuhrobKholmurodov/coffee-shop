@@ -1,12 +1,11 @@
 import { lazy, Suspense } from 'react'
-import { RouteObject } from 'react-router-dom'
 import Layouts from './layouts/Layouts'
 import { About, Cart, Contacts, Home, NotFound } from './pages'
 import { LoadingSpinner } from './components'
 
 const ProductDetails = lazy(() => import('./pages/ProductDetails'))
 
-const routes: RouteObject[] = [
+export const Routes = [
   {
     path: '/',
     element: <Layouts />,
@@ -27,5 +26,3 @@ const routes: RouteObject[] = [
   },
   { path: '*', element: <NotFound /> }
 ]
-
-export default routes
