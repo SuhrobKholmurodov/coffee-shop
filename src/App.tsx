@@ -1,37 +1,8 @@
 import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import './App.css'
-import { About, Cart, Contacts, Home, NotFound } from './pages'
-import { lazy, Suspense } from 'react'
-import 'animate.css'
-import Layouts from './layouts/Layouts'
-import { LoadingSpinner } from './components'
+import routes from './routes'
 
-const ProductDetails = lazy(() => import('./pages/ProductDetails'))
+const router = createBrowserRouter(routes)
 
-const App = () => {
-  const router = createBrowserRouter([
-    {
-      path: '/',
-      element: <Layouts />,
-      children: [
-        { index: true, element: <Home /> },
-        { path: '/contacts', element: <Contacts /> },
-        { path: '/about', element: <About /> },
-        { path: '/cart', element: <Cart /> },
-        {
-          path: '/:category/:id',
-          element: (
-            <Suspense fallback={<LoadingSpinner />}>
-              <ProductDetails />
-            </Suspense>
-          )
-        }
-      ]
-    },
-    { path: '*', element: <NotFound /> }
-  ])
-
-  return <RouterProvider router={router} />
-}
+const App = () => <RouterProvider router={router} />
 
 export default App
