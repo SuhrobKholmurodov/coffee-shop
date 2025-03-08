@@ -1,9 +1,9 @@
+import { LoadingSpinner } from '@/components'
+import Layouts from '@/layouts/Layouts'
+import { About, Cart, Contacts, Home, NotFound } from '@/pages'
 import { lazy, Suspense } from 'react'
-import Layouts from './layouts/Layouts'
-import { About, Cart, Contacts, Home, NotFound } from './pages'
-import { LoadingSpinner } from './components'
 
-const ProductDetails = lazy(() => import('./pages/ProductDetails'))
+const ProductDetails = lazy(() => import('@/pages/ProductDetails'))
 
 export const Routes = [
   {
