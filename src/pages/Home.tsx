@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux'
 import { useSelector } from 'react-redux'
 import { Helmet } from 'react-helmet'
 import { CategoryFilter, ProductList } from '@/components'
-import { selectCategoryId } from '@/redux/products/selectors' 
+import { selectCategoryId } from '@/redux/products/selectors'
 import { setCategoryId } from '@/redux/products/slice'
 
 export const Home = () => {
@@ -37,11 +37,14 @@ export const Home = () => {
           </span>
         </p>
       </div>
-      <CategoryFilter
-        categoryId={categoryId}
-        onChangeCategory={onChangeCategory}
-      />
-      <ProductList categoryId={categoryId} />
+
+      <div className='mt-8'>
+        <CategoryFilter
+          categoryId={categoryId}
+          onChangeCategory={onChangeCategory}
+        />
+        <ProductList categoryId={categoryId} />
+      </div>
     </div>
   )
 }

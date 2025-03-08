@@ -7,7 +7,7 @@ import { Reviews } from '@/redux/products/types'
 import { selectCart, selectCartItemById } from '@/redux/cart/selectors'
 import { CartItem } from '@/redux/cart/types'
 import { addItem, minusItem, removeItem } from '@/redux/cart/slice'
-import { ShowToast } from '../common'
+import { AnimatedNumber, ShowToast } from '../common'
 import { CustomDialog } from './CustomDialog'
 interface Product {
   id: number
@@ -140,9 +140,11 @@ export const ProductDialog = ({
           <div className='flex items-center mb-2 justify-between'>
             <p className='sm:text-sm text-[17px] font-semibold sm:font-bold'>
               Choose the first option:{' '}
-            </p> 
+            </p>
             {count >= 1 && (
-              <p className='sm:font-bold sm:text-sm text-[17px] font-semibold'>Total price: {product.price * count}$</p>
+              <p className='sm:font-bold sm:text-sm text-[17px] font-semibold'>
+                Total price: <AnimatedNumber value={product.price * count} />$
+              </p>
             )}
           </div>
           <div className='flex gap-[16px] sm:gap-[10px] flex-wrap mb-4'>
@@ -209,7 +211,9 @@ export const ProductDialog = ({
               >
                 <Minus />
               </button>
-              <p className='text-`xl'>{count}</p>
+              <p className='text-`xl'>
+                <AnimatedNumber value={count} />
+              </p>
               <button
                 onClick={onClickAdd}
                 className='border bg-secondareBgColor text-mainBgColor py-3 rounded-2xl px-3 border-gray-500'
