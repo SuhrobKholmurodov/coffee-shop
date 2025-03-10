@@ -1,4 +1,4 @@
-import { Rocket } from 'lucide-react'
+import { ChevronUp } from 'lucide-react'
 
 export const LaunchTopButton = () => {
   const handleScroll = () => {
@@ -12,22 +12,14 @@ export const LaunchTopButton = () => {
     <button
       onClick={handleScroll}
       className={`
-        hidden sm:flex sm:items-center sm:justify-center
-        fixed right-7 bottom-16 
-        w-12 h-12 rounded-full shadow-md
+        fixed sm:right-3 right-[45px] bottom-8 sm:bottom-[70px] flex items-center justify-center
+        w-11 h-11 rounded-full
         bg-slate-800 hover:bg-slate-700
         focus:outline-none focus:ring-2 focus:ring-slate-400
         transition-all duration-300
-        dark:bg-slate-900 dark:hover:bg-slate-800
-        dark:focus:ring-slate-600
-        group
       `}
     >
-      <Rocket
-        size={24}
-        className='text-white transition-transform 
-                   group-hover:scale-110 group-hover:rotate-6'
-      />
+      <ChevronUp size={24} className='text-white' />
     </button>
   )
 }

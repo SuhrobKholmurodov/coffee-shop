@@ -23,7 +23,8 @@ export const BottomNav = () => {
           showLabels
           sx={{
             backgroundColor: '#E1D4C9',
-            boxShadow: '0 0 0 1px #665F55'
+            boxShadow: '0 0 0 1px #665F55',
+            gap:"25px"
           }}
           value={value}
           onChange={(_, newValue) => {
